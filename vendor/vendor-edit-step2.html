@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 商户列表</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>商户管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a>商户</a>
+                        </li>
+                        <li>
+                            <a>商户管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>商户列表</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>选择用户类型</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered mt10" id="table-goodsPic">
+                                            <thead>
+                                                <tr>
+                                                    <th width="130">图片1</th>
+                                                    <th width="130">图片2</th>
+                                                    <th width="130">图片3</th>
+                                                    <th width="80">编号</th>
+                                                    <th width="80">名称</th>
+                                                    <th width="50">证件类型</th>
+                                                    <th width="80">操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <div class=" well mt5 mb0 form-group">
+                                            <div class="row">
+                                                <div class="col col-lg-6 col-lg-offset-2">
+                                                    <form id="vendorPic-checkout-form" class="smart-form">
+                                                        <input type="hidden" id="member-add-id" name="id">
+                                                        <input type="hidden" id="vendor-cert-id" name="vendorId" value="">
+                                                        <input type="hidden" name="UPLOAD-COMMAND" value="">
+                                                        <input type="hidden" name="status" value="wait">
+                                                        <input type="hidden" id="callback-url" name="UPLOAD-CALLBACK">
+                                                        <input type="hidden" id="upload-path" name="UPLOAD-PATH" value="/user/certification">
+                                                        <dl class="dl-horizontal fullscreen-dl mt10">
+                                                            <dt>名称</dt>
+                                                            <dd>
+                                                                <div class="form-group">
+                                                                    <input type="text" name="name" id="cert-name" class="form-control">
+                                                                </div>
+                                                            </dd>
+                                                            <dt>编号</dt>
+                                                            <dd>
+                                                                <div class="form-group">
+                                                                    <input type="text" name="code" id="cert-code" class="form-control">
+                                                                </div>
+                                                            </dd>
+                                                            <dt>伯本</dt>
+                                                            <dd>
+                                                                <input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">
+                                                            </dd>
+                                                            <dt>仲本</dt>
+                                                            <dd>
+                                                                <input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">
+                                                            </dd>
+                                                            <dt>叔本</dt>
+                                                            <dd>
+                                                                <input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">
+                                                            </dd>
+                                                            <dt>证件类型</dt>
+                                                            <dd>
+                                                                <select class="form-control m-b" id="certification" name="type">
+                                                                    <option value="BL">营业执照</option>
+                                                                    <option value="LPID">法人／经办人身份证</option>
+                                                                    <option value="other">其他</option>
+                                                                </select>
+                                                            </dd>
+                                                            <dt></dt>
+                                                            <dd>
+                                                                <section class="col col-6">
+                                                                    <button type="button" class="btn btn-sm btn-info" id="btn-pic-upload">上传</button>
+                                                                    <button type="button" class="btn btn-sm btn-info" id="prev-step">上一步</button>
+                                                                    <button type="button" class="btn btn-sm btn-info" id="next-step111">完成</button>
+                                                                </section>
+                                                            </dd>
+                                                        </dl>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/jquery-2.1.1.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="../assets/js/plugins/dataTables/datatables.min.js"></script>
+    <script src="../assets/js/plugins/bootbox/bootbox.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../assets/js/inspinia.js"></script>
+    <script src="../assets/js/plugins/pace/pace.min.js"></script>
+    <script src="../assets/js-common/upload.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="js-action/vendor-edit-step2.js"></script>
+</body>
+
+</html>

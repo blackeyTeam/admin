@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 订单列表</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../assets/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/plugins/tokeninput/token-input-facebook.css" type="text/css" />
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>订单信息</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a>订单</a>
+                        </li>
+                        <li>
+                            <a>订单管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>订单信息</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div id="div-middle-list" class="col-lg-12">
+                        <div class="ibox-content m-b-sm border-bottom">
+                            <form id="orders-search-form">
+                                <div class="row somehow">
+                                    <div class="col-sm-6">
+                                        <div class="input-group mb10">
+                                            <label class="vlt mt6">商家：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                            <input type="text" id="demo-input-facebook-theme" name="blah2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2" style="display:none;">
+                                        <a href="javascript:;" class="btn btn-primary btn-sm mb10">确定</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="input-group mb10">
+                                            <label class="vlt mt6">时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                            <div class="input-daterange input-group displayIT" id="input-daterange">
+                                                <input type="text" class="form-control" name="start" value="05/14/2014" />
+                                                <span class="input-group-addon">到</span>
+                                                <input type="text" class="form-control" name="end" value="05/22/2014" />
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group mb10 tab-days lh34">
+                                            <span class="acitve">今天</span>
+                                            <label>|&nbsp;&nbsp;&nbsp;最近：</label>
+                                            <span>1月内</span>
+                                            <span>3月内</span>
+                                            <span>1年内</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row somehow">
+                                    <div class="col-sm-6">
+                                        <div class="input-group mb10">
+                                            <label class="vlt mt6">金额：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                            <div class="input-group mb10 displayIT">
+                                                <input type="text" class="form-control" name="startP" />
+                                                <span class="input-group-addon borderw">-</span>
+                                                <input type="text" class="form-control" name="endP" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2" style="display:none;">
+                                        <a href="javascript:;" class="btn btn-primary btn-sm mb10">确定</a>
+                                    </div>
+                                </div>
+                                <div class="row somehow">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="vlt mt6">关键字：</label>
+                                            <input type="text" name="name" value="" placeholder="订单号/货品名/买家姓名/手机/邮箱" class="form-control display-inline" style="width:70%;">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2" style="display:none;">
+                                        <a href="javascript:;" class="btn btn-primary btn-sm mb10">确定</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>订单列表</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="tabs-table mb10">
+                                    <label class="label label-info amount-status" status="waitpay">待支付(<span id="amount-waitpay">0</span>)</label>
+                                    <label class="label label-white amount-status" status="waitship">待发货(<span id="amount-waitship">0</span>)</label>
+                                    <label class="label label-white amount-status" status="waittake">待确认收货(<span id="amount-waittake">0</span>)</label>
+                                    <label class="label label-white amount-status" status="waiteval">待评价(<span id="amount-waiteval">0</span>)</label>
+                                    <label class="label label-white amount-status" status="refund">退换货(<span id="amount-refund">0</span>)</label>
+                                    <label class="label label-white amount-status" status="success">已完成(<span id="amount-success">0</span>)</label>
+                                    <label class="label label-white amount-status" status="cancel">取消(<span id="amount-cancel">0</span>)</label>
+                                    <label class="label label-white amount-status" status="unusual">异常(<span id="amount-unusual">0</span>)</label>
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="table-vendor-list" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <tr>
+                                                    <th>时间</th>
+                                                    <th>名称 | 订单号</th>
+                                                    <th>总价</th>
+                                                    <th>买家</th>
+                                                    <th>状态</th>
+                                                    <th>明细</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="order-list">
+                                            <tr class="gradeX">
+                                                <td>2016-5-26
+                                                    <br>13:58:43</td>
+                                                <td>邓禄普轮胎，德安通轮胎
+                                                    <br>上海至联投资管理有限公司 | 订单号：2929288282</td>
+                                                <td>￥8888
+                                                </td>
+                                                <td class="center">
+                                                    收货人
+                                                    <br>(18087767777)
+                                                </td>
+                                                <td class="center">待支付</td>
+                                                <td class="center">
+                                                    <a data-toggle="modal" href="#modal-order-info" class="btn btn-info btn-circle" title="明细"><i class="fa fa-bars"></i></a>
+                                                </td>
+                                                <td class="center">
+                                                    <a href="order-detail.html" class="btn btn-success btn-circle" title="详情"><i class="fa fa-eye"></i></a>
+                                                    <a data-toggle="modal" href="#modal-order-ed" class="btn btn-primary btn-circle" title="发货"><i class="fa fa-cubes"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="paging" id="page-info">
+                                    <label class="paging-info">共 <span class="totalPages">1</span> 页/ 共 <span class="totalElements">10</span> 条数据, 每页显示
+                                        <select class="form-control input-sm" id="maxsize">
+                                            <option value="3">3</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                        </select> 条</label>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-white"><i class="fa fa-chevron-left"></i></button>
+                                        <button class="btn btn-white">1</button>
+                                        <button class="btn btn-white  active">2</button>
+                                        <button class="btn btn-white">3</button>
+                                        <button class="btn btn-white">4</button>
+                                        <button type="button" class="btn btn-white"><i class="fa fa-chevron-right"></i> </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-order-info" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-file-text"></i> 订单商品
+                    </h4>
+                </div>
+                <div class="modal-body area-overflow">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class=" float-e-margins">
+                                <div class="title">
+                                    <h5>商品列表</h5>
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="table-shops-list" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <tr>
+                                                    <th>商品</th>
+                                                    <th>单价</th>
+                                                    <th>数量</th>
+                                                    <th>小计</th>
+                                                </tr>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="item-list">
+                                            <!-- <tr class="gradeX">
+                                                <td>冠鸿汽车脚垫 5D全包围皮革尾箱垫 单件套 </td>
+                                                <td>220</td>
+                                                <td class="center">12</td>
+                                                <td class="center">123000</td>
+                                            </tr>
+                                            <tr class="gradeX">
+                                                <td>冠鸿汽车脚垫 5D全包围皮革尾箱垫 单件套 </td>
+                                                <td>220</td>
+                                                <td class="center">12</td>
+                                                <td class="center">123000</td>
+                                            </tr>
+                                            <tr class="gradeX">
+                                                <td>冠鸿汽车脚垫 5D全包围皮革尾箱垫 单件套 </td>
+                                                <td>220</td>
+                                                <td class="center">12</td>
+                                                <td class="center">123000</td>
+                                            </tr> -->
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>关闭</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-order-ed" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                         <i class="fa fa-fw fa-file-text"></i> 订单发货 | <span id="order-id">2039383838</span>
+                    </h4>
+                </div>
+                <div class="modal-body area-overflow">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1">订单发货</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2">已发货单</a></li>
+                    </ul>
+                    <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <form id="order-sendout-form">
+                                                <input type="hidden" name="orderID" id="send-orderID">
+                                                <input type="hidden" name="toLinkman" id="send-toLinkman">
+                                                <input type="hidden" name="toTel" id="send-toTel">
+                                                <input type="hidden" name="item" id="send-item">
+                                                <input type="hidden" name="num" id="send-num">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="title">
+                                                            <h4>地址信息</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 mb10">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon bggray">收货地址：</span>
+                                                            <input type="text" name="toAddress" value="XX市XXXXX" class="form-control" id="shipDest-address">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group mb10">
+                                                            <span class="input-group-addon bggray">发货地址：</span>
+                                                            <input type="text" name="fromAddress" value="XX市XXXXX" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class=" float-e-margins">
+                                                            <div class="title">
+                                                                <h4>包裹物件</h4>
+                                                            </div>
+                                                            <div class="table-responsive">
+                                                                <table id="table-shops-list" class="table table-striped table-bordered table-hover">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <tr>
+                                                                                <th>物品名</th>
+                                                                                <th>数量</th>
+                                                                                <th>
+                                                                                    <div class="i-checks">
+                                                                                        <label>
+                                                                                            <input type="checkbox" class="chkall" name=""> <i></i> </label>
+                                                                                    </div>
+                                                                                </th>
+                                                                            </tr>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="ship-item-list">
+                                                                        <!-- <tr class="gradeX">
+                                                                            <td>冠鸿汽车脚垫 5D全包围皮革尾箱垫 单件套 </td>
+                                                                            <td>123</td>
+                                                                            <td class="center">
+                                                                                <div class="i-checks">
+                                                                                    <label>
+                                                                                        <input type="checkbox" class="chk" name=""> <i></i> </label>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="gradeX">
+                                                                            <td>朝阳轮胎 </td>
+                                                                            <td>123</td>
+                                                                            <td class="center">
+                                                                                <div class="i-checks">
+                                                                                    <label>
+                                                                                        <input type="checkbox" checked="checked" class="chk" name=""> <i></i> </label>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="gradeX">
+                                                                            <td>冠鸿汽车脚垫 5D全包围皮革尾箱垫 单件套 </td>
+                                                                            <td>123</td>
+                                                                            <td class="center">
+                                                                                <div class="i-checks">
+                                                                                    <label>
+                                                                                        <input type="checkbox" class="chk" name=""> <i></i> </label>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="gradeX">
+                                                                            <td>冠鸿汽车脚垫 5D全包围皮革尾箱垫 单件套 </td>
+                                                                            <td>123</td>
+                                                                            <td class="center">
+                                                                                <div class="i-checks">
+                                                                                    <label>
+                                                                                        <input type="checkbox" class="chk" name=""> <i></i> </label>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="gradeX">
+                                                                            <td>冠鸿汽车脚垫 5D全包围皮革尾箱垫 单件套 </td>
+                                                                            <td>123</td>
+                                                                            <td class="center">
+                                                                                <div class="i-checks">
+                                                                                    <label>
+                                                                                        <input type="checkbox" class="chk" name=""> <i></i> </label>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr> -->
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <th colspan="3">
+                                                                            提示：<code>共有<span >2</span>项商品，已选择1项</code>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="title">
+                                                            <h4>快递信息</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="hidden" name="coname" id="coname">
+                                                        <select class="form-control m-b" name="coid" id="delivery-company">
+                                                            <option disabled="disabled">--- 选择快递 ---</option>
+                                                            <!-- <option value="">顺丰</option>
+                                                            <option value="">申通</option>
+                                                            <option value="">中通</option>
+                                                            <option value="">韵达</option> -->
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <input type="text" id="delivery-nummber" placeholder="运单号" class="form-control" name="number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <input type="text" id="delivey-remark" placeholder="备注" class="form-control" name="remark">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab-2" class="tab-pane">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="table-responsive mt10">
+                                                    <table class="table table-striped table-bordered table-hover table-active">
+                                                        <thead>
+                                                            <tr>
+                                                                <tr>
+                                                                    <th>发货单号</th>
+                                                                    <th>承运公司</th>
+                                                                    <th width="100">发货明细</th>
+                                                                </tr>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="waybill-list">
+                                                            <tr>
+                                                                <td>123444</td>
+                                                                <td >
+                                                                    中通快递
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                   <a href="javascript:;"  title="明细"><i class="fa fa-eye"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>12344</td>
+                                                                <td>
+                                                                   申通快递
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                   <a href="javascript:;"  title="明细"><i class="fa fa-eye"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+                
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" id="btn-order-sendout"><strong>保存</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/jquery-2.1.1.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="../assets/js/plugins/dataTables/datatables.min.js"></script>
+    <script src="../assets/js/plugins/bootbox/bootbox.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../assets/js/inspinia.js"></script>
+    <script src="../assets/js/juicer.js"></script>
+    <script src="../assets/js/plugins/pace/pace.min.js"></script>
+    <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
+    <!-- Data picker -->
+    <script src="../assets/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <!-- Image cropper -->
+    <script src="../assets/js/plugins/cropper/cropper.min.js"></script>
+    <script src="../assets/js/jquery.tokeninput.js"></script>
+    <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="../assets/js-common/paging.js"></script>
+    <script src="js/order-list.js"></script>
+    <script src="js-data/order-list.js"></script>
+    <script src="js-view/order-list.js"></script>
+    <script src="js-action/order-list.js"></script>
+    <script src="js-action/order-ship.js"></script>
+</body>
+
+</html>

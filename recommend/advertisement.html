@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 商户列表</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>商品信息</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a>商品</a>
+                        </li>
+                        <li>
+                            <a>商品管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>广告管理</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div id="div-middle-list" class="col-lg-12">
+                        <div class="ibox-content m-b-sm border-bottom">
+                            <h3>快速搜索</h3>
+                            <form id="recommend-search-form">
+                                <div class="row">
+                                    <!-- <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input type="text" id="input-target-type" name="registName" value="" placeholder="广告归属大类" class="form-control" readonly="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control m-b" name="brief">
+                                            <option>--- 请选择广告类型 ---</option>
+                                            <option value="">全部</option>
+                                            <option value="sales">店铺商品广告</option>
+                                            <option value="agent">旗舰店内广告</option>
+                                            <option value="provider">分类广告</option>
+                                            <option value="user">参数广告</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control m-b" name="code">
+                                            <option>--- 请选择广告种类 ---</option>
+                                            <option value="sales">PC端</option>
+                                            <option value="agent">手机端</option>
+                                        </select>
+                                    </div> -->
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input type="text" name="title" value="" placeholder="广告标题" class="form-control">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-sm-3">
+                                        <select class="form-control m-b" name="code">
+                                            <option>--- 请选择广告开关 ---</option>
+                                            <option value="">全部</option>
+                                            <option value="sales">开启</option>
+                                            <option value="agent">关闭</option>
+                                            <option value="provider">异常</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control m-b" name="code">
+                                            <option>--- 请选择广告位置 ---</option>
+                                            <option value="">全部</option>
+                                            <option value="sales">首页</option>
+                                            <option value="agent">登录页面</option>
+                                            <option value="provider">注册页</option>
+                                            <option value="user">旗舰店页面</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control m-b" name="auditStatus">
+                                            <option>--- 请选择广告本页的位置 ---</option>
+                                            <option>全部</option>
+                                            <option>头部</option>
+                                            <option>中部</option>
+                                            <option>底部</option>
+                                        </select>
+                                    </div> -->
+                                    <div class="col-sm-2" >
+                                        <a href="javascript:;" class="btn btn-primary">查询</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>广告列表</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+                                    <a href="#" class="btn btn-sm btn-primary " id="add-advertisement">添加广告</a>
+                                    <!-- <a href="javascript:;" id="btn-goods-del" class="btn btn-sm btn-primary btn-warning">批量删除</a> -->
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="table-vendor-list" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <tr>
+                                                    <th>
+                                                        <div class="i-checks">
+                                                            <label>
+                                                                <input type="checkbox" class="chkall" value="option1" name="a"> <i></i> </label>
+                                                        </div>
+                                                    </th>
+                                                    <th>推荐标题</th>
+                                                    <th>位置描述</th>
+                                                    <th>位置宽度</th>
+                                                    <th>位置高度</th>
+                                                    <!-- <th style="width:200px">推荐类型</th> -->
+                                                    <th>地址</th>
+                                                    <th>图片地址</th>
+                                                    <th>描述</th>
+                                                 <!--    <th>推荐开始时间</th>
+                                                    <th>推荐结束时间</th> -->
+                                                    <th>操作</th>
+                                                </tr>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recommend-list">
+                                            <tr class="gradeX">
+                                                <td>
+                                                    <div class="i-checks">
+                                                        <label>
+                                                            <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                    </div>
+                                                </td>
+                                                <td>旗舰店内广告</td>
+                                                <td>PC</td>
+                                                <td><a href="javascript:;" class="btn btn-primary" id="chang-atu">开启</a></td>
+                                                <td>
+                                                    <img alt="no Pic" width="80" height="50" src="http://filetest.cheaiwang.com/20160617/6678737362246114173.jpg">
+                                                </td>
+                                                <td class="center">
+                                                    http://www.51pinlu.com/goods/goods-detail.html?id=8aad106153793560015379762ca60203
+                                                </td>
+                                                <td class="center">汽车轮胎</td>
+                                                <td class="center">鹰睿-4</td>
+                                                <td class="center">鹰睿-4</td>
+                                                <td class="center">旗舰店页面</td>
+                                                <td class="center">中部</td>
+                                                <td class="center">中</td>
+                                                <td class="center">2016-06-19 13:14</td>
+                                                <td class="center">
+                                                    <a href="adver-edit.html" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                    <a href="javascript:;" class="btn btn-circle btn-primary" title="上架"><i class="fa fa-check"></i></a>
+                                                    <a href="javascript:;" class="btn-goods-del btn btn-warning btn-circle" title="删除"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeX">
+                                                <td>
+                                                    <div class="i-checks">
+                                                        <label>
+                                                            <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                    </div>
+                                                </td>
+                                                <td>旗舰店内广告</td>
+                                                <td>PC</td>
+                                                <td><a href="javascript:;" class="btn btn-primary" id="chang-atu">开启</a></td>
+                                                <td>
+                                                    <img alt="no Pic" width="80" height="50" src="http://filetest.cheaiwang.com/20160617/6678737362246114173.jpg">
+                                                </td>
+                                                <td class="center">
+                                                    http://www.51pinlu.com/goods/goods-detail.html?id=8aad106153793560015379762ca60203
+                                                </td>
+                                                <td class="center">汽车轮胎</td>
+                                                <td class="center">鹰睿-4</td>
+                                                <td class="center">鹰睿-4</td>
+                                                <td class="center">旗舰店页面</td>
+                                                <td class="center">中部</td>
+                                                <td class="center">中</td>
+                                                <td class="center">2016-06-19 13:14</td>
+                                                <td class="center">
+                                                    <a href="adver-edit.html" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                    <a href="javascript:;" class="btn btn-circle btn-primary" title="上架"><i class="fa fa-check"></i></a>
+                                                    <a href="javascript:;" class="btn-goods-del btn btn-warning btn-circle" title="删除"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="paging" id="page-info">
+                                    <label class="paging-info">共 <span class="totalPages">1</span> 页/ 共 <span class="totalElements">10</span> 条数据, 每页显示
+                                        <select class="form-control input-sm" id="maxsize">
+                                            <option value="3">3</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                        </select> 条</label>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-white"><i class="fa fa-chevron-left"></i></button>
+                                        <button class="btn btn-white">1</button>
+                                        <button class="btn btn-white  active">2</button>
+                                        <button class="btn btn-white">3</button>
+                                        <button class="btn btn-white">4</button>
+                                        <button type="button" class="btn btn-white"><i class="fa fa-chevron-right"></i> </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modal-advertisement-add" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-level-up"></i> 推荐广告
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div id="tree-tag-choose" class="col-sm-12">
+                            <h4 class="label-current">选择位置：</h4>
+                            <hr>
+                            <div class="tag-content tag-content-1" data-label="tag-content-1" id="tag-content-1">
+
+                            </div>
+                            <div class="tag-content tag-content-2" data-label="tag-content-2" style="display:none;" id="tag-content-2">
+
+                            </div>
+                            <div class="tag-content tag-content-3" data-label="tag-content-3" style="display:none;" id="tag-content-3">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mt10">
+                            <h4>基本信息</h4>
+                            <div class="well">
+                                <div id="div-form" class="col col-lg-8 col-lg-offset-1">
+                                  <form id="advertisement-position-form">
+                                    <div class="form-group">
+                                        <dl class="dl-horizontal fullscreen-dl mt10">
+                                            <input type="hidden" name="positionId" id="positionId">
+                                            <input type="hidden" name="objectId" id="objectId">
+                                            <input type="hidden" name="categoryIds" id="categoryIds">
+                                            <dt>标题</dt>
+                                            <dd>
+                                                <div class="form-group">
+                                                        <input type="hidden" id="member-add-id" name="id">  
+                                                        <input type="hidden" name="UPLOAD-COMMAND" value="">
+                                                        <input type="hidden" id="callback-url" name="UPLOAD-CALLBACK">
+                                                        <input type="hidden" id="upload-path" name="UPLOAD-PATH" value="/user/certification">
+                                                    <input type="text" name="title" class="form-control" id="advertisement-title">
+                                                </div>
+                                            </dd>
+                                            <dt class='advertisement hide' >推荐位置</dt>
+                                            <dd class='advertisement hide'>
+                                                <div class="form-group">
+                                                    <input type="text"  class="form-control" id="advertisement-position">
+                                                </div>
+                                            </dd>
+                                            <dt>图片</dt>
+                                            <dd>
+                                                <input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">
+                                            </dd>
+                                            <dt>链接地址</dt>
+                                            <dd>
+                                                <div class="form-group">
+                                                    <input type="text" name="url" class="form-control" id="advertisement-url">
+                                                </div>
+                                            </dd>
+                                            <dt>简介</dt>
+                                            <dd>
+                                                <div class="form-group">
+                                                    <textarea type="text" name="description" class="form-control" id="advertisement-description"></textarea>
+                                                </div>
+                                            </dd>
+                                            <dt></dt>
+                                            <dd><span class="error" id="recommend-add-error"></span></dd>
+                                             <dt></dt>
+                                            <dd>
+                                                <button class="btn btn-sm btn-primary m-t-n-xs" id="btn-save-advertisement" type="button"><strong>保存</strong></button>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" data-dismiss="modal"><strong>确定</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+                    <div id="div-right-tree" class="col-lg-3" style="display:none;">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>分类</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div id="jstree2">
+                                </div>
+                            </div>
+                            <div class="ibox-footer tlr">
+                                <a id="btn-right-tree-cancle" href="javascript:;" class="btn btn-default btn-sm">取消</a>
+                                <a id="btn-right-tree-save" href="javascript:;" class="btn btn-primary btn-sm">确定</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/jquery-2.1.1.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="../assets/js/plugins/dataTables/datatables.min.js"></script>
+    <script src="../assets/js/plugins/bootbox/bootbox.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../assets/js/inspinia.js"></script>
+    <script src="../assets/js/plugins/pace/pace.min.js"></script>
+    <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
+        <script src="../assets/js-common/systemkctree.js"></script>
+        <script src="../assets/js-common/upload.js"></script>
+    <script src="../assets/js-common/recommendtree.js"></script>
+    <!-- Image cropper -->
+    <script src="../assets/js/plugins/cropper/cropper.min.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="../assets/js-common/paging.js"></script>
+    <script src="../assets/js/juicer.js"></script>
+    <script src="js/advertisement.js"></script>
+    <script src="js-action/advertisement.js"></script>
+    <script src="js-data/advertisement.js"></script>
+    <script src="js-view/advertisement.js"></script>
+
+    
+</body>
+
+</html>

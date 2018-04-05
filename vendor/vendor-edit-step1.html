@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 商户列表</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/plugins/summernote/summernote-new.css">    
+    <link href="../assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">    
+    <link rel="stylesheet" href="../assets/js/plugins/ztree/zTreeStyle.css" type="text/css">
+    <link href="css/c_imgup.css" rel="stylesheet" />    
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+    <link href="../assets/css/plugins/tokeninput/token-input-facebook.css" rel="stylesheet">
+    <script src="../assets/js/jquery-2.1.1.js"></script>    
+    <script src="../assets/js-common/vue.js"></script>
+</head>
+
+<body>
+    
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>商户管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a>商户</a>
+                        </li>
+                        <li>
+                            <a>商户管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>商户列表</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12" id="div-left-list">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>选择用户类型</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                	<form id="activity-form">
+                                    <div id="div-form" class="col">
+                                        <div class="form-group">
+                                            <dl class="dl-horizontal fullscreen-dl mt10">
+                                               
+                                                <dt>活动名称</dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" name="name" v-model="name" placeholder="活动" class="form-control">
+                                                    </div>
+                                                </dd>
+                                                 <dt>选择商户</dt>
+                                                    <dd>
+                                                        <div class="form-group">
+                                                            <input type="text" id="vendor" name="business" class="form-control display-inline"></input>
+                                                        </div>
+                                                           <!--  <select class="form-control m-b" name="type" id="vendor-type">
+                                                                <option value="unknown">待定</option>
+                                                                <option value="agent">代理商</option>
+                                                                <option value="provider">直销</option>
+                                                            </select> -->
+                                                        </dd>
+                                                <dt>市场价</dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" name="salePrice" v-model="salePrice" placeholder="市场价" class="form-control">
+                                                    </div>
+                                                </dd>
+                                                <dd class="one-imgfile">
+                                                    <div id="gg_imgfile">选择图片</div>
+                                                    <div id="gg_imglook">
+                                                        <div style="clear: both;"></div>
+                                                    </div>
+                                                </dd>
+                                                <dt>折扣价</dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" name="discountPrice" v-model="discountPrice" value="" class="form-control">
+                                                    </div>
+                                                </dd>
+                                                <dt>抢购价</dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" v-model="rushPrice" name="rushPrice" value="" class="form-control">
+                                                    </div>
+                                                </dd>
+                                                <dt>库存</dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" v-model="stock" name="stock" value="" class="form-control">
+                                                    </div>
+                                                </dd>
+                                                <dt>已售出</dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" v-model="saleOut" name="saleOut" value="" class="form-control">
+                                                    </div>
+                                                </dd>
+                                                <dt>注意事项</dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <textarea v-model="attention" name="attention" value="" class="form-control"></textarea>
+                                                    </div>
+                                                </dd>
+                                                <dt>活动详情</dt>
+                                                <dd>
+                                                    <div class="summernote" id="editor">
+                                                    </div>
+                                                </dd>
+                                                <p></p>
+                                                <dd>
+                                                    <button href="javascript:;" class="btn btn-sm btn-info" @click="save">保存</button>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/cropper/cropper.min.js"></script>
+    <!-- <script src="../assets/js-common/locationtree.js"></script> -->
+    <script src="../assets/js/jquery.tokeninput2.js"></script>    
+    <script src="../assets/js-common/application.js"></script>    
+    <script src="js/vendor-edit-step1.js"></script>
+    <script src="js-data/vendor-edit-step1.js"></script>    
+    <script src="js-action/vendor-edit-step1.js"></script>
+    <script src="js/c_imgup.js"></script>      
+    <script src="../assets/js/plugins/summernote/summernote.js"></script>    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#editor').summernote({
+                height: 400,
+                lang: 'zh-CN',
+                focus: true,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['insert', ['picture', 'video']]
+                ],
+                callbacks: {
+                    onImageUpload: function(files, editor, $editable) {
+                        sendFile(files, editor, $editable);
+                    }
+                }
+            });
+    
+            function sendFile(file, editor, $editable) {
+            var formData = new FormData();
+            formData.append('file', file[0]);
+            var url = "/server/file/upload";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(rtn) {
+                    $('#editor').summernote('insertImage', rtn.data);
+                },
+                error: function(er) {}
+            });
+        }
+        });
+        $("#vendor").tokenInput("/server/business/list", {
+            theme: "facebook",
+            hintText: "输入相关信息自动匹配",
+            noResultsText: "没有结果",
+            searchingText: "搜索公司中...",
+            tokenLimit: 1,
+            onAdd: function (item) {
+                // console.log(item);
+                activity.$data.business_name = item.name;
+                activity.$data.business_id = item.id;
+            },
+            onDelete: function (item) {
+                activity.$data.business_name = '';
+                activity.$data.business_id = '';
+            }
+        });
+        </script>
+</body>
+
+</html>

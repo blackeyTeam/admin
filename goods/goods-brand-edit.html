@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 商户列表</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/js/plugins/ztree/zTreeStyle.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>品牌管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a>商品</a>
+                        </li>
+                        <li>
+                            <a>商品管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>品牌管理</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12" id="div-left-list">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>品牌信息</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div id="div-form" class="col col-lg-6 col-lg-offset-2">
+                                        <div class="form-group">
+                                            <form id="brand-info-form">
+                                            <dl class="dl-horizontal fullscreen-dl mt10">
+                                            	<input type="hidden" name="UPLOAD-COMMAND" value="">
+                                                <input type="hidden" id="callback-url" name="UPLOAD-CALLBACK">
+                                                <input type="hidden" id="upload-path" name="UPLOAD-PATH" value="/user/certification">
+                                                <input type="hidden" name="id" id="edit-id">
+                                                <dt>序号<code>*</code></dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" name="sequenced" id="sequenced" class="form-control">
+                                                    </div>
+                                                </dd>
+                                                <dt>简介<code>*</code></dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" name="remark" class="form-control" id="remark">
+                                                    </div>
+                                                </dd>
+                                                <dt>分类
+                                                    <code>*</code>
+                                                </dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" id="input-target-type" readonly="true" name="input-catalogEdit" value="" placeholder="点击选择分类" class="form-control">
+                                                        <input type="hidden" name="categoryIds" id="sys_category_ids" value="">
+                                                    </div>
+                                                </dd>
+                                                <dt>品牌名称
+                                                    <code>*</code>
+                                                </dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" name="name" class="form-control" id="name">
+                                                    </div>
+                                                </dd>
+                                                <dt>品牌英文名称
+                                                    <code>*</code>
+                                                </dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" name="enName" class="form-control" id="enName">
+                                                    </div>
+                                                </dd>
+                                                <dt>pc图片
+                                                	<code>*</code>
+                                                </dt>
+                                                <dd>
+                                                    <input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">
+                                                </dd>
+                                                <dt>app图片
+                                                	<code>*</code>
+                                                </dt>
+                                                <dd>
+                                                    <input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">
+                                                </dd>
+                                                <dt>排序
+                                                    <code>*</code>
+                                                </dt>
+                                                <dd>
+                                                    <div class="form-group">
+                                                        <input type="text" name="sortnum" class="form-control" id="sortnum">
+                                                    </div>
+                                                </dd>
+                                                <dd>
+                                                    <a href="goods-brand.html" class="btn btn-sm btn-default mr10">返回</a>
+                                                    <a href="javascript:;" class="btn btn-sm btn-info" id="btn-brand-save">保存</a>
+                                                </dd>
+                                            </dl>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-right-tree" class="col-lg-3" style="display:none;">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>选择分类</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <ul id="select-multi-tree" class="ztree"></ul> 
+                                
+                            </div>
+                            <div class="ibox-footer tlr">
+                                <a id="btn-right-tree-cancle" href="javascript:;" class="btn btn-default btn-sm">取消</a>
+                                <a id="btn-right-tree-save" href="javascript:;" class="btn btn-primary btn-sm">确定</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/jquery-2.1.1.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="../assets/js/plugins/dataTables/datatables.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../assets/js/inspinia.js"></script>
+    <script src="../assets/js/plugins/pace/pace.min.js"></script>
+    <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="../assets/js/plugins/bootbox/bootbox.min.js"></script>
+    <!-- Image cropper -->
+    <script src="../assets/js/plugins/cropper/cropper.min.js"></script>
+    <script src="../assets/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="../assets/js-common/systemkctree.js"></script>
+    <script src="../assets/js-common/upload.js"></script>
+    <script src="js/goods-brand-edit.js"></script>
+    <script src="js-data/goods-brand-edit.js"></script>
+    <script src="js-view/goods-brand-edit.js"></script>
+    <script src="js-action/goods-brand-edit.js"></script>
+</body>
+
+</html>

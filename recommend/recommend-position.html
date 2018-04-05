@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 推荐管理</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../assets/css/plugins/jsTree/style.min.css" rel="stylesheet">
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/js/plugins/ztree/zTreeStyle.css" type="text/css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>推荐位置</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="../assets/index.html">推荐</a>
+                        </li>
+                        <li>
+                            <a>推荐管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>推荐位置管理</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>推荐位置</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <ul id="recommend-tree" class="ztree">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-middle-list" class="col-lg-9">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>当前位置：<code class="newCategoryName">请选择位置(点击左边的树)</code></h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <table class="table table-striped table-bordered table-hover " id="editable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chkall" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </th>
+                                            <th>位置名称</th>
+                                            <th>位置标识</th>
+                                            <th>描述</th>
+                                            <th>宽</th>
+                                            <th>高</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recommend-list">
+                                        <!-- <tr class="gradeX">
+                                            <td>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </td>
+                                            <td>1</td>
+                                            <td class="center">位置1</td>
+                                            <td class="center">1就斤斤计较</td>
+                                            <td>
+                                                <a data-toggle="modal" href="#modal-position-classify-edit" class="btn btn-sm btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                <a href="javascript:;" class="btn-position-classify-del btn btn-sm btn-warning btn-circle" title="删除"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                         -->
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="7">
+                                                <a data-toggle="modal" href="#" class="btn btn-sm btn-info btn-sm btn-recommend-edit">新建</a>
+                                               
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-right-tree" class="col-lg-3" style="display:none;">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>目标位置</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div id="jstree2">
+                                </div>
+                            </div>
+                            <div class="ibox-footer tlr">
+                                <a id="btn-right-tree-cancle" href="javascript:;" class="btn btn-default btn-sm">取消</a>
+                                <a id="btn-right-tree-save" href="javascript:;" class="btn btn-primary btn-sm">确定</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-position-classify-add" class="modal fade sm-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-plus"></i> 新增推荐位置
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                            	<form id="recommend-form">
+                                <dl class="dl-horizontal fullscreen-dl ">
+                                    <dt>
+                                        <label>当前</label>
+                                    </dt>
+                                    <dd>
+                                        <code class="newCategoryName">请选择位置(点击左边的树)</code>
+                                    </dd>
+                                    <dt>
+                                        <label>名称</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" name="name" id="categoryName" class="form-control">
+                                            <input type="hidden" name="parentId" id="parentId">
+                                            <input type="hidden" name="id" id="recommend_id">
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        <label>位置标识</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" name="mark" id="recommend-mark" class="form-control">
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        <label>宽</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" name="width" id="recommend-width" class="form-control">
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        <label>高</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" name="height" id="recommend-height" class="form-control">
+                                        </div>
+                                    </dd>
+                                    <dt>描述</dt>
+                                    <dd>
+                                    <div class="display-inline input-md">
+                                         <textarea name="description" id="recommend-description" class="form-control" ></textarea>
+                                    </div>
+                                    </dd>
+                                </dl>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs recommend-save"><strong>保存</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="modal-position-classify-edit" class="modal fade sm-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-edit"></i> 编辑推荐位置
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <dl class="dl-horizontal fullscreen-dl ">
+                                    <dt>
+                                        <label>当前位置</label>
+                                    </dt>
+                                    <dd>
+                                        <code class="newCategoryName">请选择位置(点击左边的树)</code>
+                                    </dd>
+                                    <dt>
+                                        <label>名称</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" class="form-control" value="">
+                                        </div>
+                                    </dd>
+                                     <dt>描述</dt>
+                                    <dd>
+                                    <div class="display-inline input-md">
+                                         <textarea name="remark" class="form-control" ></textarea>
+                                    </div>
+                                    </dd>
+                                    <dt></dt>
+                                    <dd><span class="error">我是提示信息</span></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs"><strong>保存</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/jquery-2.1.1.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="../assets/js/plugins/dataTables/datatables.min.js"></script>
+    <script src="../assets/js/plugins/bootbox/bootbox.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../assets/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="../assets/js/juicer.js"></script>
+    <script src="../assets/js/inspinia.js"></script>
+    <script src="../assets/js/plugins/pace/pace.min.js"></script>
+    <script src="../assets/js-common/recommendkctree.js"></script>
+    <!-- iCheck -->
+    <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="js/recommend-position.js"></script>
+    <script src="js-action/recommend-position.js"></script>
+    <script src="js-data/recommend-position.js"></script>
+    <script src="js-view/recommend-position.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 权限管理</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../assets/css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/plugins/tokeninput/token-input-facebook.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>系统设置</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="../assets/index.html">系统</a>
+                        </li>
+                        <li>
+                            <a>权限管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>身份成员管理</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox-content m-b-sm border-bottom">
+                            <h3>当前身份：<code id="role-member-name">超级管理员</code></h3>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                     <input type="text" id="input-search-admin" name="blah2" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <a id="btn-clear-chosen" href="javascript:;" class="btn btn-warning btn-sm"><i class="fa fa-trash"></i> 清除全部</a>
+                                    <a data-toggle="modal" class="btn btn-info btn-sm" id="btn-admin-search"><i class="fa fa-search"></i> 查找用户</a>
+                                    <a href="javascript:;" class="btn btn-success btn-sm" id="btn-add-member"><i class="fa fa-plus"></i> 确认添加</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>成员列表 </h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <table class="table table-striped table-bordered table-hover " id="editable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chkall" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </th>
+                                            <th>序号</th>
+                                            <th>姓名</th>
+                                            <th>Email</th>
+                                            <th>手机</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="role-member-list">
+                                        <tr class="gradeX">
+                                            <td>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </td>
+                                            <td>1</td>
+                                            <td>xxxx</td>
+                                            <td class="center">13472509101@qq.com</td>
+                                            <td class="center">12345678989</td>
+                                        </tr>
+                                        <tr class="gradeX">
+                                            <td>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </td>
+                                            <td>2</td>
+                                            <td>xxxx</td>
+                                            <td class="center">13472509101@qq.com</td>
+                                            <td class="center">12345678989</td>
+                                        </tr>
+                                        <tr class="gradeX">
+                                            <td>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </td>
+                                            <td>3</td>
+                                            <td>xxxxxx</td>
+                                            <td class="center">13472509101@qq.com</td>
+                                            <td class="center">12345678989</td>
+                                        </tr>
+                                        <tr class="gradeX">
+                                            <td>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </td>
+                                            <td>4</td>
+                                            <td>xxxx</td>
+                                            <td class="center">13472509101@qq.com</td>
+                                            <td class="center">12345678989</td>
+                                        </tr>
+                                        <tr class="gradeX">
+                                            <td>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </td>
+                                            <td>5</td>
+                                            <td>xxxx</td>
+                                            <td class="center">13472509101@qq.com</td>
+                                            <td class="center">12345678989</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="5">
+                                                <a href="javascript:;" class="btn btn-sm btn-danger btn-sm mr10" id="btn-member-del">删除</a>
+                                                <select class="form-control wd200 display-inline mr10" name="account" id="other-role-select">
+                                                    <option disabled="">--选择其它身份进行转移--</option>
+                                                    <!-- <option>管理员</option>
+                                                    <option>超级管理员</option>
+                                                    <option>黑名单</option> -->
+                                                </select>
+                                                <a href="javascript:;" class="btn btn-sm btn-primary btn-sm " id="btn-member-trans">转移</a>
+                                                <a href="role.html" class="btn btn-sm btn-default btn-sm ">返回</a>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-user-list" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-users"></i> 选择用户
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <section class="col col-sm-3">
+                            <div class="input-group m-b"><span class="input-group-addon"><i class="icon-prepend fa fa-user"></i></span>
+                                <input type="text" placeholder="姓名" class="form-control" id="admin-name">
+                            </div>
+                        </section>
+                        <section class="col col-sm-3">
+                            <div class="input-group m-b"><span class="input-group-addon"><i class="icon-prepend fa fa-mobile"></i></span>
+                                <input type="text" placeholder="手机" class="form-control" id="admin-mobile">
+                            </div>
+                        </section>
+                        <section class="col col-sm-3">
+                            <div class="input-group m-b">
+                                <span class="input-group-addon">
+                                            <i class="icon-prepend fa fa-envelope-o"></i>
+                                        </span>
+                                <input type="text" placeholder="邮箱" class="form-control" id="admin-email">
+                            </div>
+                        </section>
+                        <section class="col col-sm-3 tlc">
+                            <a href="javascript:;" class="btn btn-info btn-w-m" id="btn-admin-search">搜索</a>
+                        </section>
+                        <div class="col-sm-12">
+                            <table class="table table-striped table-bordered table-hover " id="editable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="i-checks">
+                                                <label>
+                                                    <input type="checkbox" class="chkall" value="option1" name="a"> <i></i> </label>
+                                            </div>
+                                        </th>
+                                        <th>序号</th>
+                                        <th>姓名</th>
+                                        <th>Email</th>
+                                        <th>手机</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-list">
+                                    <tr class="gradeX">
+                                        <td>
+                                            <div class="i-checks">
+                                                <label>
+                                                    <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                            </div>
+                                        </td>
+                                        <td>1</td>
+                                        <td>xxxx</td>
+                                        <td class="center">13472509101@qq.com</td>
+                                        <td class="center">12345678989</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>
+                                            <div class="i-checks">
+                                                <label>
+                                                    <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                            </div>
+                                        </td>
+                                        <td>2</td>
+                                        <td>xxxx</td>
+                                        <td class="center">13472509101@qq.com</td>
+                                        <td class="center">12345678989</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>
+                                            <div class="i-checks">
+                                                <label>
+                                                    <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                            </div>
+                                        </td>
+                                        <td>3</td>
+                                        <td>xxxxxx</td>
+                                        <td class="center">13472509101@qq.com</td>
+                                        <td class="center">12345678989</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>
+                                            <div class="i-checks">
+                                                <label>
+                                                    <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                            </div>
+                                        </td>
+                                        <td>4</td>
+                                        <td>xxxx</td>
+                                        <td class="center">13472509101@qq.com</td>
+                                        <td class="center">12345678989</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>
+                                            <div class="i-checks">
+                                                <label>
+                                                    <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                            </div>
+                                        </td>
+                                        <td>5</td>
+                                        <td>xxxx</td>
+                                        <td class="center">13472509101@qq.com</td>
+                                        <td class="center">12345678989</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="paging" id="page-info">
+                                <label class="paging-info">共 <span class="totalPages">1</span> 页/ 共 <span class="totalElements">10</span> 条数据, 每页显示
+                                    <select class="form-control input-sm" id="maxsize">
+                                        <option value="3">3</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                    </select> 条</label>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-white"><i class="fa fa-chevron-left"></i></button>
+                                    <button class="btn btn-white">1</button>
+                                    <button class="btn btn-white  active">2</button>
+                                    <button class="btn btn-white">3</button>
+                                    <button class="btn btn-white">4</button>
+                                    <button type="button" class="btn btn-white"><i class="fa fa-chevron-right"></i> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" id="btn-choose-admin"><strong>保存</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/jquery-2.1.1.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="../assets/js/plugins/dataTables/datatables.min.js"></script>
+    <!-- Chosen -->
+    <script src="../assets/js/plugins/chosen/chosen.jquery.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../assets/js/inspinia.js"></script>
+    <script src="../assets/js/juicer.js"></script>
+    <script src="../assets/js/plugins/pace/pace.min.js"></script>
+    <script src="../assets/js/plugins/bootbox/bootbox.min.js"></script>
+    <!-- iCheck -->
+    <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="../assets/js/jquery.tokeninput.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="../assets/js-common/paging.js"></script>
+    <script src="js/role-members.js"></script>
+    <script src="js-data/role-members.js"></script>
+    <script src="js-view/role-members.js"></script>
+    <script src="js-action/role-members.js"></script>
+</body>
+
+</html>

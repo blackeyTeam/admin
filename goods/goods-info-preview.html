@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 商品列表</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/plugins/tokeninput/token-input-facebook.css" type="text/css">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="css/goods-info-edit.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>商品管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a>商品</a>
+                        </li>
+                        <li>
+                            <a>商品管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>商品列表</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12" id="div-left-list">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>基本信息</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div id="div-form" class="col col-lg-7 col-lg-offset-2">
+                                          <div class="form-group">
+			                               <dl class="dl-horizontal fullscreen-dl mt10">
+			                                   <dt>名称</dt>
+			                                   <dd id="goods-name">
+			                                       <!-- 三角轮胎 TR757 185/65R15 92T -->
+			                                   </dd>
+			                                   <dt>分类</dt>
+			                                   <dd id="goods-syscategory">乘用车胎</dd>
+			                                   <dt>商品重量<code>(kg)</code></dt>
+			                                   <dd id="goods-shopWeight">
+			                                   </dd>
+			                                   <dt>品牌</dt>
+			                                   <dd id="goods-brandName">三角轮胎</dd>
+			                                   
+			                                   <dt>属性</dt>
+			                                   <dd id="param-list">
+			                                       胎面宽: 185
+			                                       <br> 扁平率: 65
+			                                       <br> 轮毂直径: 15
+			                                       <br> 载重: 92
+			                                       <br> 速度: T
+			                                   </dd>
+			                                   <dt>介绍</dt>
+			                                   <dd id="goods-remark">
+			                                       三角TR757轮胎是专门针对极端冰冷环境所设计的。其特有的交错镶钉排列设计使轮胎即使在常年冰冻的道路上依旧拥有强大的抓地力。 TR757轮胎为用户在最恶劣的冬季气候下提供了最为可靠的驱动力来确保驾驶的安全性以及操控性。此外，它的单导向花纹设计为冬去春来的过渡时期提供了有效的排泥性能。
+			                                   </dd>
+			                                   <dt>图片</dt>
+			                                   <dd>
+			                                       <table class="table table-bordered">
+			                                           <thead>
+			                                               <tr>
+			                                                   <th width="130">图片</th>
+			                                                   <th>位置</th>
+			                                                   <th>封面</th>
+			                                               </tr>
+			                                           </thead>
+			                                           <tbody id="goods-pic-list">
+			                                              
+			                                           </tbody>
+			                                       </table>
+			                                   </dd>
+			                                   <dt></dt>
+                                               <dd>
+                                                   <section class="col col-6">
+                                                       <a href="#" class="btn btn-sm btn-info" id="prev-step">上一步</a>
+                                                       <a href="#" class="btn btn-sm btn-info" id="next-step">完成</a>
+                                                   </section>
+                                               </dd>
+			                               </dl>
+			                           </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-right-tree" class="col-lg-3" style="display:none;">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>分类</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div id="jstree2">
+                                </div>
+                            </div>
+                            <div class="ibox-footer tlr">
+                                <a id="btn-right-tree-cancle" href="javascript:;" class="btn btn-default btn-sm">取消</a>
+                                <a id="btn-right-tree-save" href="javascript:;" class="btn btn-primary btn-sm">确定</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/jquery-2.1.1.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="../assets/js/plugins/dataTables/datatables.min.js"></script>
+    <script src="../assets/js/plugins/bootbox/bootbox.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../assets/js/inspinia.js"></script>
+    <script src="../assets/js/plugins/pace/pace.min.js"></script>
+    <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
+    <!-- Image cropper -->
+    <script src="../assets/js/plugins/cropper/cropper.min.js"></script>
+    <script src="../assets/js/jquery.tokeninput.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="../assets/js/juicer.js"></script>
+    <script src="js/goods-info-edit.js"></script>
+    <script src="js-action/goods-info-preview.js"></script>
+    <script src="js-view/goods-info-preview.js"></script>
+    <script src="js-data/goods-info-preview.js"></script>
+</body>
+
+</html>

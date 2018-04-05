@@ -1,0 +1,11 @@
+.token-input-list-facebook li input {
+    padding: 0 5px!important;
+    margin: 0!important;
+}
+.token-input-list-facebook{
+	width: 100%!important;
+}
+div.token-input-dropdown-facebo {
+	min-width: 300px;
+	max-width: 100%;
+}

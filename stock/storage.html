@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 运费模板</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/plugins/tokeninput/token-input-facebook.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>库存管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a>库存管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>仓库管理</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox-content m-b-sm border-bottom">
+                            <form id="storage-search-form">
+                                <div class="row somehow mt10">
+                                    <div class="col-sm-6">
+                                        <div class="input-group mb10">
+                                            <label class="vlt mt6">商家：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                            <input type="text" id="demo-input-facebook-theme" name="blah2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2" style="display:none;">
+                                        <a href="javascript:;" class="btn btn-primary btn-sm mb10">确定</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="tabs-container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#tab-1">商家仓库</a></li>
+                                <li class=""><a data-toggle="tab" href="#tab-2">至联仓库</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="input-group">
+                                                    <a data-toggle="modal" href="#modal-storage-add" class="btn btn-xs btn-default display-tc">新增仓库</a>
+                                                    <label class="display-tc tc-space"></label>
+                                                    <input type="text" name="name" value="" placeholder="名称/地址" class="form-control">
+                                                    <span id="btn-search-storage-1" class="input-group-addon like-btn"><i class="fa fa-search"></i></span>
+                                                </div>
+                                                <div class="table-responsive mt10">
+                                                    <table class="table table-striped table-bordered table-hover table-active">
+                                                        <thead>
+                                                            <tr>
+                                                                <tr>
+                                                                    <th>仓库</th>
+                                                                    <th width="100">操作</th>
+                                                                </tr>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>一号仓库</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-storage-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-storage-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>临时仓库</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-tmpl-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-tmpl-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group">
+                                                    <a data-toggle="modal" href="#modal-storage-add" class="btn btn-xs btn-default display-tc">新增库区</a>
+                                                    <label class="display-tc tc-space"></label>
+                                                    <input type="text" name="name" value="" placeholder="名称" class="form-control">
+                                                    <span id="btn-search-storage-2" class="input-group-addon like-btn"><i class="fa fa-search"></i></span>
+                                                </div>
+                                                <div class="table-responsive mt10">
+                                                    <table class="table table-striped table-bordered table-hover table-active">
+                                                        <thead>
+                                                            <tr>
+                                                                <tr>
+                                                                    <th>库区</th>
+                                                                    <th width="100">操作</th>
+                                                                </tr>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>A库区</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-storage-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-storage-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>B库区</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-tmpl-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-tmpl-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group">
+                                                    <a data-toggle="modal" href="#modal-storage-add" class="btn btn-xs btn-default display-tc">新增库位</a>
+                                                    <label class="display-tc tc-space"></label>
+                                                    <input type="text" name="name" value="" placeholder="名称" class="form-control">
+                                                    <span id="btn-search-storage-3" class="input-group-addon like-btn"><i class="fa fa-search"></i></span>
+                                                </div>
+                                                <div class="table-responsive mt10">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <tr>
+                                                                    <th>库位</th>
+                                                                    <th width="100">操作</th>
+                                                                </tr>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>轮毂001号位</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-storage-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-storage-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>轮毂002号位</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-tmpl-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-tmpl-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab-2" class="tab-pane">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="input-group">
+                                                    <a data-toggle="modal" href="#modal-storage-add" class="btn btn-xs btn-default display-tc">新增仓库</a>
+                                                    <label class="display-tc tc-space"></label>
+                                                    <input type="text" name="name" value="" placeholder="名称/地址" class="form-control">
+                                                    <span id="btn-search-storage-1" class="input-group-addon like-btn"><i class="fa fa-search"></i></span>
+                                                </div>
+                                                <div class="table-responsive mt10">
+                                                    <table class="table table-striped table-bordered table-hover table-active">
+                                                        <thead>
+                                                            <tr>
+                                                                <tr>
+                                                                    <th>仓库</th>
+                                                                    <th width="100">操作</th>
+                                                                </tr>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>一号仓库</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-storage-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-storage-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>临时仓库</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-tmpl-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-tmpl-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group">
+                                                    <a data-toggle="modal" href="#modal-storage-add" class="btn btn-xs btn-default display-tc">新增库区</a>
+                                                    <label class="display-tc tc-space"></label>
+                                                    <input type="text" name="name" value="" placeholder="名称" class="form-control">
+                                                    <span id="btn-search-storage-2" class="input-group-addon like-btn"><i class="fa fa-search"></i></span>
+                                                </div>
+                                                <div class="table-responsive mt10">
+                                                    <table class="table table-striped table-bordered table-hover table-active">
+                                                        <thead>
+                                                            <tr>
+                                                                <tr>
+                                                                    <th>库区</th>
+                                                                    <th width="100">操作</th>
+                                                                </tr>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>A库区</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-storage-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-storage-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>B库区</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-tmpl-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-tmpl-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group">
+                                                    <a data-toggle="modal" href="#modal-storage-add" class="btn btn-xs btn-default display-tc">新增库位</a>
+                                                    <label class="display-tc tc-space"></label>
+                                                    <input type="text" name="name" value="" placeholder="名称" class="form-control">
+                                                    <span id="btn-search-storage-3" class="input-group-addon like-btn"><i class="fa fa-search"></i></span>
+                                                </div>
+                                                <div class="table-responsive mt10">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <tr>
+                                                                    <th>库位</th>
+                                                                    <th width="100">操作</th>
+                                                                </tr>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>轮毂001号位</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-storage-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-storage-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>轮毂002号位</td>
+                                                                <td class="center">
+                                                                    <a data-toggle="modal" href="#modal-tmpl-edit" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                                    <a href="javascript:;" class="btn btn-warning btn-circle btn-tmpl-del" title="删除"><i class="fa fa-trash"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-storage-add" class="modal fade sm-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-plus"></i> 新增
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <dl class="dl-horizontal fullscreen-dl ">
+                                    <dt>
+                                        <label>名称</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        <label>备注</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <textarea type="text" class="form-control">
+                                            </textarea>
+                                        </div>
+                                    </dd>
+                                    <dt></dt>
+                                    <dd><span class="error">我是提示信息</span></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs"><strong>保存</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-storage-edit" class="modal fade sm-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-edit"></i> 编辑
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <dl class="dl-horizontal fullscreen-dl ">
+                                    <dt>
+                                        <label>名称</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" class="form-control" value="仓库">
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        <label>备注</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <textarea type="text" class="form-control">
+                                            </textarea>
+                                        </div>
+                                    </dd>
+                                    <dt></dt>
+                                    <dd><span class="error">我是提示信息</span></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs"><strong>保存</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/jquery-2.1.1.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="../assets/js/plugins/dataTables/datatables.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../assets/js/inspinia.js"></script>
+    <script src="../assets/js/plugins/pace/pace.min.js"></script>
+    <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
+    <!-- Image cropper -->
+    <script src="../assets/js/plugins/cropper/cropper.min.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="../assets/js/jquery.tokeninput.js"></script>
+    <script src="js/storage.js"></script>
+</body>
+
+</html>

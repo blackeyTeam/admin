@@ -1,0 +1,52 @@
+body,ul,li{margin:0;padding:0;overflow-x:hidden;background-color:#D1E9E9;font-family: Arial;}
+.fr{float: right;}
+.fl{float: left;}
+
+/*head*/
+.bg-success{position: relative;width:100%;font-size:30px;line-height:82px;background-color:#6FB7B7;}
+.img-rounded{float:left;width:70px;height:70px;margin:6px 0 0 20px;}
+.bar_right{margin-right:20px;}
+.bar_right a{color: #000;font-size:15px;font-family: "YouYuan";}
+.bar_right a:hover{cursor: pointer;}
+
+/*navigation*/
+#naviga {padding:0 30px;width:100%;position: relative;border-bottom: 0px;margin-top:8px;font-size: 15px;left:90px;}
+#naviga li{float:left;margin:0 10px 0 0;width: 80px;height:50px;text-align: center;}
+#naviga li a{line-height: 45px;color:#3C3C3C;font-family: "YouYuan";font-weight:bold;text-decoration: none;}
+#naviga li{border-radius:8px 8px 0 0;border: 5px solid #D1E9E9;}	
+#naviga #hom{/*border-left-color:#6FB7B7; border-top-color:#6FB7B7;border-right-color:#6FB7B7;*/font-size: 20px;}
+
+#naviga li:hover,a:hover{cursor: pointer;}
+
+/*框z-index: 500;*/
+.line_left_bottom{position:absolute;float:right;border-radius:0 5px 5px 5px;width:93%;height:100%;
+	border:5px solid #6FB7B7;margin-left:30px;margin-top: -5px;background-color: transparent;z-index: 500;}
+/*遮挡线12*/
+/*#line_hover {}*/
+#line_hover {margin-top: -18px;margin-left: 90px;background:transparent;/*width: 800px;*/}
+#line_hover li{float:left;margin:0 90px 0 0;visibility:hidden;}
+#line_hover li .line_hover3{position:absolute;border:5px solid  #6FB7B7;width: 1px;height:10px;
+	background-color:transparent;z-index: 1000;float:left;border-radius:0 0 8px 0;margin-top: -12px;margin-left: -5px;border-top-width:0;border-left-width:0;}
+#line_hover li .line_hover1{position:absolute;width: 80px;height:5px;background-color:#D1E9E9;z-index: 999;float:left;margin-top: -7px;margin-left: -5px;}
+#line_hover li .line_hover2{position:absolute;border:5px solid  #6FB7B7;width: 1px;height:10px;background-color:transparent;
+	z-index: 1000;float:left;border-radius:0 0 0 8px;margin-top: -12px;margin-left: 70px;border-top-width:0;border-right-width:0;}
+
+/*查询*/
+#sear{margin:5px 200px 10px 220px;height: 28px;position: relative;}
+#sear input{float:left;}
+#searname {width: 80%;}
+#searbtn {margin:0 5px;width: 80px;}
+
+/*用户列表-修改-添加*/
+#addPer{width: 100%;position: relative;margin:5px 200px 0 170px;}
+#addPer p,input,button{float:left;margin:0 0 0 5px;}
+#addPer .form-control{width: 15%;}
+
+/*表格*/
+#tab{margin:5px auto;width:900px;}
+#tab th,td{text-align:center;}
+#tab td>button{margin-left:35%;padding-top: -2px;}
+.btn-danger,.btn-warning{padding:2px 12px;height:20px;line-height:20px;}
+/*表格线*/
+.table>thead>tr>th {border-bottom: 3px solid #6FB7B7;}
+ .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {border-top: 1px solid #6FB7B7;}

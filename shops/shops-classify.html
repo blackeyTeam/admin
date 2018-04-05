@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 店铺管理</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../assets/css/plugins/jsTree/style.min.css" rel="stylesheet">
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/js/plugins/ztree/zTreeStyle.css" type="text/css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>商铺管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="../assets/index.html">商铺</a>
+                        </li>
+                        <li>
+                            <a>商铺管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>商铺分类管理</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>商铺分类</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <ul id="syskc-tree" class="ztree">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-middle-list" class="col-lg-9">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>当前分类：<code class="newCategoryName">请选择分类(点击左边的树)</code></h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <table class="table table-striped table-bordered table-hover " id="editable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chkall" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </th>
+                                            <th>序号</th>
+                                            <th>分类名称</th>
+                                            <th>分类级别</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="syskc-tree-list">
+                                        <tr class="gradeX">
+                                            <td>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </td>
+                                            <td>1</td>
+                                            <td class="center">乘用车胎</td>
+                                            <td class="center">1</td>
+                                            <td>
+                                                <a data-toggle="modal" href="#modal-shops-classify-edit" class="btn btn-sm btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                <a href="javascript:;" class="btn-shops-classify-del btn btn-sm btn-warning btn-circle" title="删除"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr class="gradeX">
+                                            <td>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </td>
+                                            <td>2</td>
+                                            <td class="center">卡客车胎</td>
+                                            <td class="center">1</td>
+                                            <td>
+                                                <a data-toggle="modal" href="#modal-shops-classify-edit" class="btn btn-sm btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                <a href="javascript:;" class="btn-shops-classify-del btn btn-sm btn-warning btn-circle" title="删除"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr class="gradeX">
+                                            <td>
+                                                <div class="i-checks">
+                                                    <label>
+                                                        <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                </div>
+                                            </td>
+                                            <td>3</td>
+                                            <td class="center">工程胎</td>
+                                            <td class="center">1</td>
+                                            <td>
+                                                <a data-toggle="modal" href="#modal-shops-classify-edit" class="btn btn-sm btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                <a href="javascript:;" class="btn-shops-classify-del btn btn-sm btn-warning btn-circle" title="删除"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="7">
+                                                <a data-toggle="modal" href="#" class="btn btn-sm btn-info btn-sm btn-shops-classify-edit">新建</a>
+                                                <!-- <a href="javascript:;" id="btn-shops-classify-del" class="btn btn-sm btn-warning btn-sm mr10">删除</a> -->
+                                                <!-- <div class="form-group display-inline m15">
+                                                    <label class="display-inline">将选中目录转移到</label>
+                                                    <input id="input-target-area" type="text" class="form-control display-inline wd100">
+                                                </div>
+                                                <a href="javascript:;" class="btn btn-sm btn-primary btn-sm ">转移</a> -->
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-right-tree" class="col-lg-3" style="display:none;">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>目标分类</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div id="jstree2">
+                                </div>
+                            </div>
+                            <div class="ibox-footer tlr">
+                                <a id="btn-right-tree-cancle" href="javascript:;" class="btn btn-default btn-sm">取消</a>
+                                <a id="btn-right-tree-save" href="javascript:;" class="btn btn-primary btn-sm">确定</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-shops-classify-add" class="modal fade sm-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-plus"></i> 新增商铺分类
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                            	<form id="shopClassFrom">
+                                <dl class="dl-horizontal fullscreen-dl ">
+                                    <dt>
+                                        <label>当前分类</label>
+                                    </dt>
+                                    <dd>
+                                        <code class="newCategoryName">请选择分类(点击左边的树)</code>
+                                    </dd>
+                                    <dt>
+                                        <label>名称</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" name="name" id="categoryName" class="form-control">
+                                            <input type="hidden" class="nowCategoryId" name="parentId">
+                                            <input type="hidden"  id="shopId" name="shopId">
+                                            <input type="hidden" id="categoryId" name="id">
+                                        </div>
+                                    </dd>
+                                    <dt>状态</dt>
+                                    <dd>
+                                    <div class="display-inline input-md">
+                                        <select class="form-control m-b" name="auditStatus" id="edit-auditStatus">
+                                            <option value="" disabled="">--- 请选择审核状态 ---</option>
+                                            <option value="wait">待审</option>
+                                            <option value="success">通过</option>
+                                            <option value="fail">失败</option>
+                                        </select>
+                                    </div><div class="display-inline input-md">
+                                    </dd>
+                                    <!-- <dd><span class="error">我是提示信息</span></dd> -->
+                                </dl>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" id="shopCategory_save"><strong>保存</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-shops-classify-edit" class="modal fade sm-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-edit"></i> 编辑商铺分类
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <dl class="dl-horizontal fullscreen-dl ">
+                                    <dt>
+                                        <label>当前分类</label>
+                                    </dt>
+                                    <dd>
+                                        <code class="newCategoryName">请选择分类(点击左边的树)</code>
+                                    </dd>
+                                    <dt>
+                                        <label>名称</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" class="form-control" value="乘用车胎">
+                                        </div>
+                                    </dd>
+                                    <dt></dt>
+                                    <dd><span class="error">我是提示信息</span></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs"><strong>保存</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/jquery-2.1.1.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="../assets/js/plugins/dataTables/datatables.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../assets/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="../assets/js/juicer.js"></script>
+    <script src="../assets/js/inspinia.js"></script>
+    <script src="../assets/js-common/shopkctree.js"></script>
+    <script src="../assets/js/plugins/pace/pace.min.js"></script>
+    <script src="../assets/js/plugins/bootbox/bootbox.min.js"></script>
+    <!-- iCheck -->
+    <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
+    <!-- <script src="../assets/js/plugins/jsTree/jstree.min.js"></script> -->
+    <script src="../assets/js-common/application.js"></script>
+    <script src="js/shops-classify.js"></script>
+    <script src="js-action/shops-classify.js"></script>
+    <script src="js-data/shops-classify.js"></script>
+    <script src="js-view/shops-classify.js"></script>
+</body>
+
+</html>

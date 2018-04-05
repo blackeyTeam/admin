@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理平台 | 商户列表</title>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link href="../assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../assets/css/animate.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav id="header-l" class="navbar-default navbar-static-side" role="navigation">
+            <script type="text/javascript" src="../assets/js-common/header.js"></script>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav id="header-r" class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <script type="text/javascript" src="../assets/js-common/header-r.js"></script>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>商品信息</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a>商品</a>
+                        </li>
+                        <li>
+                            <a>商品管理</a>
+                        </li>
+                        <li class="active">
+                            <strong>商品信息</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div id="div-middle-list" class="col-lg-12">
+                        <div class="ibox-content m-b-sm border-bottom">
+                            <h3>快速搜索</h3>
+                            <form id="goods-info-search-form">
+                                 <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input id="input-target-type" type="text" name="" value="" placeholder="分类" readonly="true" class="form-control">
+                                            <input type="hidden" name="syscategoryId" id="system-category-id">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control m-b" name="brandId">
+                                            <option value="">--- 选择品牌 ---</option>
+                                            <option value="">全部</option>
+                                            <option value="">车</option>
+                                            <option value="">轮胎</option>
+                                            <option value="">油品</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input type="text" name="name" value="" placeholder="商品名称" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control m-b" name="auditStatus">
+                                            <option value="">--- 审核状态 ---</option>
+                                            <option value="">全部</option>
+                                            <option value="">通过</option>
+                                            <option value="">不通过</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a href="javascript:;" class="btn btn-primary" id="btn-goods-search">查询</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>商品列表</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <!-- <div class="">
+                                    <a href="goods-info-edit.html" class="btn btn-sm btn-primary ">添加商品</a>
+                                    <a href="javascript:;" id="btn-goods-del" class="btn btn-sm btn-primary btn-warning">批量删除</a>
+                                </div> -->
+                                <div class="table-responsive">
+ <table id="table-goods-list" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <tr>
+                                                    <th>
+                                                        <div class="i-checks">
+                                                            <label>
+                                                                <input type="checkbox" class="chkall" value="option1" name="a"> <i></i> </label>
+                                                        </div>
+                                                    </th>
+                                                    <th>名称</th>
+                                                    <th>品牌</th>
+                                                    <th>分类</th>
+                                                    <th>商品图片</th>
+                                                    <th>日期</th>
+                                                    <th>是否审核</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="goods-list">
+                                            <tr class="gradeX">
+                                                <td>
+                                                    <div class="i-checks">
+                                                        <label>
+                                                            <input type="checkbox" class="chk" value="option1" name="a"> <i></i> </label>
+                                                    </div>
+                                                </td>
+                                                <td>三角轮胎</td>
+                                                <td>乘用车胎</td>
+                                                <td>三角轮胎 PS04 235/65R17 108T</td>
+                                                <td>
+                                                    <img alt="no Pic" width="80" height="50" src="http://filetest.cheaiwang.com/20160617/6678737362246114173.jpg">
+                                                </td>
+                                                <td class="center">
+                                                    2013/09/10
+                                                </td>
+                                                <td class="center">待审</td>
+                                                <td class="center">
+                                                    <a href="goods-info-edit.html" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                    <a href="goods-info-edit.html" class="btn btn-circle btn-primary" title="审核"><i class="fa fa-check"></i></a>
+                                                    <a href="javascript:;" class="btn-goods-del btn btn-warning btn-circle" title="删除"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="paging" id="page-info">
+                                    <label class="paging-info">共 <span class="totalPages">1</span> 页/ 共 <span class="totalElements">10</span> 条数据, 每页显示
+                                        <select class="form-control input-sm" id="maxsize">
+                                            <option value="3">3</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                        </select> 条</label>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-white"><i class="fa fa-chevron-left"></i></button>
+                                        <button class="btn btn-white">1</button>
+                                        <button class="btn btn-white  active">2</button>
+                                        <button class="btn btn-white">3</button>
+                                        <button class="btn btn-white">4</button>
+                                        <button type="button" class="btn btn-white"><i class="fa fa-chevron-right"></i> </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-right-tree" class="col-lg-3" style="display:none;">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>分类</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div id="jstree2">
+                                </div>
+                            </div>
+                            <div class="ibox-footer tlr">
+                                <a id="btn-right-tree-cancle" href="javascript:;" class="btn btn-default btn-sm">取消</a>
+                                <a id="btn-right-tree-save" href="javascript:;" class="btn btn-primary btn-sm">确定</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    10GB of <strong>250GB</strong> Free.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2015
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-goods-auth" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-check"></i> 商品审核
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="form-group">
+                                <dl class="dl-horizontal fullscreen-dl mt10">
+                                    <input type="hidden" id="goods-id" name="id">
+                                    <input type="hidden" name="auditStatus">
+                                    <dt>名称</dt>
+                                    <dd>
+                                        三角轮胎 TR757 185/65R15 92T
+                                    </dd>
+                                    <dt>分类</dt>
+                                    <dd>乘用车胎</dd>
+                                    <dt>商品重量<code>(kg)</code></dt>
+                                    <dd>
+                                    </dd>
+                                    <dt>品牌</dt>
+                                    <dd>三角轮胎</dd>
+                                    <dt>类型<code>*</code></dt>
+                                    <dd>品路车品</dd>
+                                    <dt>属性</dt>
+                                    <dd>
+                                        胎面宽: 185
+                                        <br> 扁平率: 65
+                                        <br> 轮毂直径: 15
+                                        <br> 载重: 92
+                                        <br> 速度: T
+                                    </dd>
+                                    <dt>介绍</dt>
+                                    <dd>
+                                        三角TR757轮胎是专门针对极端冰冷环境所设计的。其特有的交错镶钉排列设计使轮胎即使在常年冰冻的道路上依旧拥有强大的抓地力。 TR757轮胎为用户在最恶劣的冬季气候下提供了最为可靠的驱动力来确保驾驶的安全性以及操控性。此外，它的单导向花纹设计为冬去春来的过渡时期提供了有效的排泥性能。
+                                    </dd>
+                                    <dt>图片</dt>
+                                    <dd>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th width="130">图片</th>
+                                                    <th>位置</th>
+                                                    <th>封面</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="goods-pic-list">
+                                                <tr>
+                                                    <td><img src="http://filetest.cheaiwang.com/20160617/3025551111265471587.jpg" width="120" height="80" class="img-rounded"></td>
+                                                    <td>图片区</td>
+                                                    <td>是</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs"><strong>审核通过</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-goods-ad" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-level-up"></i> 推荐广告
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div id="tree-tag-choose" class="col-sm-12">
+                            <h4 class="label-current">推荐位置：</h4>
+                            <hr>
+                            <div class="tag-content tag-content-1" data-label="tag-content-1">
+                                <label class="label label-white">分类一层1</label>
+                                <label class="label label-white">分类一层2</label>
+                                <label class="label label-white">分类一层3</label>
+                                <label class="label label-white">分类一层4</label>
+                                <label class="label label-white">分类一层5</label>
+                                <label class="label label-white">分类一层6</label>
+                                <label class="label label-white">分类一层7</label>
+                                <label class="label label-white">分类一层8</label>
+                                <label class="label label-white">分类一层9</label>
+                                <label class="label label-white">分类一层10</label>
+                                <label class="label label-white">分类一层11</label>
+                                <label class="label label-white">分类一层12</label>
+                                <label class="label label-white">分类一层13</label>
+                                <label class="label label-white">分类一层14</label>
+                                <label class="label label-white">分类一层15</label>
+                                <label class="label label-white">分类一层16</label>
+                                <label class="label label-white">分类一层17</label>
+                                <label class="label label-white">分类一层18</label>
+                            </div>
+                            <div class="tag-content tag-content-2" data-label="tag-content-2" style="display:none;">
+                                <label class="label label-white">分类二层1</label>
+                                <label class="label label-white">分类二层2</label>
+                                <label class="label label-white">分类二层3</label>
+                                <label class="label label-white">分类二层4</label>
+                                <label class="label label-white">分类二层5</label>
+                                <label class="label label-white">分类二层6</label>
+                                <label class="label label-white">分类二层7</label>
+                                <label class="label label-white">分类二层8</label>
+                                <label class="label label-white">分类二层9</label>
+                                <label class="label label-white">分类二层10</label>
+                                <label class="label label-white">分类二层11</label>
+                                <label class="label label-white">分类二层12</label>
+                                <label class="label label-white">分类二层13</label>
+                                <label class="label label-white">分类二层14</label>
+                                <label class="label label-white">分类二层15</label>
+                                <label class="label label-white">分类二层16</label>
+                                <label class="label label-white">分类二层17</label>
+                                <label class="label label-white">分类二层18</label>
+                            </div>
+                            <div class="tag-content tag-content-3" data-label="tag-content-3" style="display:none;">
+                                <label class="label label-white">分类三层1</label>
+                                <label class="label label-white">分类三层2</label>
+                                <label class="label label-white">分类三层3</label>
+                                <label class="label label-white">分类三层4</label>
+                                <label class="label label-white">分类三层5</label>
+                                <label class="label label-white">分类三层6</label>
+                                <label class="label label-white">分类三层7</label>
+                                <label class="label label-white">分类三层8</label>
+                                <label class="label label-white">分类三层9</label>
+                                <label class="label label-white">分类三层10</label>
+                                <label class="label label-white">分类三层11</label>
+                                <label class="label label-white">分类三层12</label>
+                                <label class="label label-white">分类三层13</label>
+                                <label class="label label-white">分类三层14</label>
+                                <label class="label label-white">分类三层15</label>
+                                <label class="label label-white">分类三层16</label>
+                                <label class="label label-white">分类三层17</label>
+                                <label class="label label-white">分类三层18</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mt10">
+                            <h4>基本信息</h4>
+                            <div class="well">
+                                <div id="div-form" class="col col-lg-8 col-lg-offset-1">
+                                    <div class="form-group">
+                                        <dl class="dl-horizontal fullscreen-dl mt10">
+                                            <dt>标题</dt>
+                                            <dd>
+                                                <div class="form-group">
+                                                    <input type="text" name="title" class="form-control">
+                                                </div>
+                                            </dd>
+                                            <dt>图片</dt>
+                                            <dd>
+                                                <input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">
+                                            </dd>
+                                            <dt>链接地址</dt>
+                                            <dd>
+                                                <div class="form-group">
+                                                    <input type="text" name="link" class="form-control">
+                                                </div>
+                                            </dd>
+                                            <dt>简介</dt>
+                                            <dd>
+                                                <div class="form-group">
+                                                    <textarea type="text" name="brief" class="form-control"></textarea>
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs"><strong>保存</strong></button>
+                    <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-tmpl" class="modal fade sm-modal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <input type="hidden" id="shopGooodsId">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <i class="fa fa-fw fa-edit"></i> 编辑规格定价
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group-define">
+                                <dl class="dl-horizontal fullscreen-dl ">
+                                <form class="goodsparam-form">
+                                    <dt>
+                                        <label>可选规格</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="hidden" id="edit-paramId" name="paramId">
+                                             <input id="firstprice" type="text" name="title" >
+                                            <input type="hidden" value="price" name="shopClassParamType" >
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        <label>可选参数</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="table-responsive">
+                                            <table id="table-tmpl" class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <tr>
+                                                            <th width="100">规格</th>
+                                                            <th>零售价格<code>(元)</code></th>
+                                                            <th>批发价格<code>(元)</code></th>
+                                                            <th>优惠价格<code>(元)</code></th>
+                                                            <th width="100">操作</th>
+                                                        </tr>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="gradeX dd-for-price" >
+                                                        <td class="c-i"  id="value">
+                                                            
+                                                        </td>
+                                                        <td class="c-i"  id="price1">
+                                                            
+                                                        </td>
+                                                        <td class="c-i"  id="price2">
+                                                            
+                                                        </td>
+                                                        <td class="c-i"  id="price3">
+                                
+                                                        </td>
+                                                        <td class="center">
+                                                            <a href="javascript:;" class="btn-tmpledit btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                            <a href="javascript:;" class="btn-goods-del btn btn-warning btn-circle" title="删除"><i class="fa fa-trash"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </dd>
+                                    <dt></dt>
+                                    <dd><a href="javascript:;" class="add-can-1"><code>+添加参数</code></a></dd>
+                                    <div class="modal-footer foot-foot">
+                                        <button class="btn btn-sm btn-primary pull-right m-t-n-xs" id="btn-first-param-save" type="button"><strong>保存</strong></button>
+                                        <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                                    </div>
+                                    </form>
+                                </dl>
+                                <dl class="dl-horizontal fullscreen-dl ">
+                                    <form class="goodsparam-form">
+                                    <dt>
+                                        <label>可选规格</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                                <input type="hidden" name="paramId" id="edit-stock-paramId">
+                                                <input type="text" name="title"  id="Sprice">
+                                                <input type="hidden" value="stock" name="shopClassParamType" >
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        <label>可选参数</label>
+                                    </dt>
+                                    <dd>
+                                        <div class="table-responsive">
+                                            <table id="table-tmpl-2" class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <tr>
+                                                            <th width="100">颜色</th>
+                                                            <th>库存<code>（规格１）</code></th>
+<!--                                                             <th>库存<code>（规格２）</code></th>
+                                                            <th>库存<code>（规格３）</code></th> -->
+                                                            <th width="100">操作</th>
+                                                        </tr>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="gradeX dd-for-stock">
+                                                        <td class="c-i" >
+                                                            
+                                                        </td>
+                                                        <td class="c-i" >
+                                                            
+                                                        </td>
+<!--                                                         <td class="c-i" >
+                                                           
+                                                        </td>
+                                                        <td class="c-i" >
+                                                         
+                                                        </td> -->
+                                                        <td class="center">
+                                                            <a href="javascript:;" class="btn-tmpledit btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>
+                                                            <a href="javascript:;" class="btn-goods-del btn btn-warning btn-circle" title="删除"><i class="fa fa-trash"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </dd>
+                                    <dt></dt>
+                                    <dd><a href="javascript:;" class="add-can-2"><code>+添加参数</code></a></dd>
+                                    <div class="modal-footer foot-foot">
+                                        <button class="btn btn-sm btn-primary pull-right m-t-n-xs" id="btn-S-param-save" type="button"><strong>保存</strong></button>
+                                        <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal"><strong>取消</strong></button>
+                                    </div>
+                                    </form>
+                                </dl>
+                            </div>
+                            
+                            <a href="javascript:;" class="add-stand"><code>+添加新规格</code></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="../assets/js/jquery-2.1.1.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../assets/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="../assets/js/plugins/dataTables/datatables.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="../assets/js/inspinia.js"></script>
+    <script src="../assets/js/juicer.js"></script>
+    <script src="../assets/js/plugins/pace/pace.min.js"></script>
+    <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="../assets/js/plugins/bootbox/bootbox.min.js"></script>
+    <!-- Image cropper -->
+    <script src="../assets/js/plugins/cropper/cropper.min.js"></script>
+    <script src="../assets/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../assets/js-common/application.js"></script>
+    <script src="../assets/js-common/paging.js"></script>
+    <script src="../assets/js-common/systemkctree.js"></script>
+    <script src="../assets/js-common/recommendtree.js"></script>
+    <script src="../assets/js-common/upload.js"></script>
+    <script src="js/goods-price.js"></script>
+    <script src="js-data/goods-price.js"></script>
+    <script src="js-view/goods-price.js"></script>
+    <script src="js-action/goods-price.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+*body{margin:0;padding:0;}
+/*header*/
+#header {height: 49px;margin: 0;padding: 0 13px 0 0;background-color: #f3f3f3;}
+#header>div { display: inline-block;vertical-align: middle;height: 49px;float: left;}
+#welcome { width: auto !important; margin-left: 20px;font-weight: 700;line-height: 49px;}
+#extr{ display:block;float: right;list-style: none;font-size:14px;}
+ul{ margin-top: 0; margin-bottom: 9px;}
+#extr li a {color: #444;}
+#extr li{float:right;line-height: 49px;margin:0 10px 0 0;}
+
+/*login*/
+#login_all{width:360px;height:385px;position:absolute;border: 1px solid #A9A9A9;top:100px;right:70px;}
+.login{width:334px;height:24px;padding:15px 13px;background-color: #f3f3f3;}
+.input_login{width:332px;height:236px;padding:25px 14px 5px 14px;}
+
+.input_login p{margin:0 0 6px 0;font-size: 13px}
+.qiye,.user,.password{width:283px;height:14px;padding:8px 37px 8px 10px;border:1px solid #BDBDBD;margin-bottom: 15px;}
+
+.btn1{width:331px;height:41px;padding:7px 13px 15px 14px;background-color: #f3f3f3;border:1px solid transparent;border-top-color: #A9A9A9;}
+.btn_submit{width:76px;height:31px;background-color: #275b89;margin:10px 0 0 0;float:right;
+	border:1px solid #1f496d;color:white;border-radius: 2px;font-size: 15px;}
