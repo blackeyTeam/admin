@@ -1,64 +1,121 @@
-var status = "waitpay";
-$(function(){
-	ordersStatus();
-	loadOrderList(0);
-	$('body').on('click','.btn-order-detail',showDetailModal);
-	$('body').on('click','.amount-status',function(){
-		status = $(this).attr('status');
-		loadOrderList(0);
-	});
-	$('body').on('click','.btn-order-ship',showOrderShipModal);
-	$('body').on('click','#btn-order-sendout',orderSendOut);
+var view = new Vue({
+
+    el: '#page',
+    data: {
+        //分页参数
+        pageNumber: 0, //当前显示页码 默认第一页
+        pageSize: 8, //当前列表最大行数 默认8
+        totalPages: 1, //总页数 默认1
+        totalElements: 0, //对象数据总数
+        showItemMax: 5, //页码显示数 默认5
+        currentShowItemMin: 1, //当前页码最小值 默认1
+        pageSizeOptions: [{
+            text: "8",
+            value: 8
+        }, {
+            text: "16",
+            value: 16
+        }, {
+            text: "24",
+            value: 24
+        }, ],
+        showItemArray: [], //页码显示数组  
+
+        objArrayData: [], //对象数组
+    },
+
+    mounted: function() {
+        this.page();
+    },
+
+    watch: {
+        //更改列表最大行数
+        pageSize: function() {
+            this.pageNumber = 0;
+            this.page();
+        },
+        //页码变更
+        pageNumber: function() {
+            this.page();
+        },
+    },
+
+    methods: {
+        //显示
+        page: function() {
+            var self = this;
+            ajax.page({
+                pageNumber: this.pageNumber,
+                pageSize: this.pageSize
+            }, function(json) {
+                //分页数据
+                self.showItemArray = [];
+                for (var i = self.currentShowItemMin; i <= json.totalPages && i < self.currentShowItemMin + self.showItemMax; i++) {
+                    self.showItemArray.push({
+                        text: i,
+                        value: i
+                    });
+                }
+                self.totalElements = json.totalElements;
+                self.totalPages = json.totalPages;
+
+                //渲染列表
+                self.objArrayData = json.content;
+            });
+        },
+        //添加Modal
+        showAddModal: function() {
+ 
+
+            $("#modal-environment").modal("show");
+        },
+
+        deleteModel: function(event, id) {
+            var self = this;
+            var callback = function() {
+                ajax.delete({id:id},function(json){
+                  if(json.code=="success"){
+                    layerMsg("删除成功!");
+                    if(self.totalElements%self.pageNumber==1){
+                      if(self.pageNumber>1){
+                        self.pageNumber--;
+                        if(self.currentShowItemMin>1) self.currentShowItemMin--;
+                      } 
+                      else self.page();
+                    }else{
+                      self.page();
+                    }
+                  }else alert(json.message);
+                });                
+            };
+            common.showMsgPane('确认删除吗？', 'confirm', callback);
+        },
+        //选择页码
+        selectShowItem: function(showItem) {
+            if(showItem-2 > 0 && this.totalPages>=showItem+2)
+                this.currentShowItemMin=showItem-2;
+            else if(showItem-3 > 0&&this.totalPages>=showItem+1)
+                this.currentShowItemMin=showItem-3;
+            this.pageNumber = showItem - 1;
+        },
+        //上一页
+        prePage: function() {
+            if (this.totalPages > 5 && this.currentShowItemMin > 1) {
+                this.currentShowItemMin -= 1;
+                this.pageNumber -= 1;
+            }else if(this.pageNumber>0){
+                this.pageNumber -= 1;
+            }
+        },
+        //下一页
+        nextPage: function() {
+            if (this.totalPages > 5 && this.currentShowItemMin <= this.totalPages - 5) {
+                this.currentShowItemMin += 1;
+                this.pageNumber += 1;
+            }else if(this.pageNumber<this.totalPages-1){
+                this.pageNumber += 1;
+            }
+        },
+
+    }
 });
-
-function loadOrderList(page){
-	var size = $("#order-size").val() ? $("#order-size").val() : 10;
-	var data = {pageSize:size,pageNumber:page,status:status};
-	orderData.pagelist(data,function(json){
-		orderView.fillOrderList(json);
-	});
-}
-
-function showDetailModal(){
-	var orderId = $(this).attr('orderID');
-	orderData.itemList(orderId,function(json){
-		orderView.fillItemList(json);
-	});
-	$('#modal-order-info').modal('show');
-}
-
-function ordersStatus(){
-	orderData.statisAmount(function(json){
-		orderView.fillAmount(json);
-	});
-}
-
-function showOrderShipModal(){
-	showOrder($(this).attr('orderID'));
-	deliveryCompany();
-	showWayBillList($(this).attr('orderID'));
-	$('#modal-order-ed').modal('show');
-}
-
-function orderSendOut(){
-	var orderId = $('#order-id').text();
- 	var obj = document.getElementById("delivery-company");
-    var index=obj.selectedIndex;   
-	var coname=obj.options[index].innerText; 
-	$('#coname').val(coname); 
-	var item = [];
-	var num = [];
-	var chk  = $('#ship-item-list').find('input.chk:checked');
-	if(chk.length==0){
-		alert("请选择发货项");
-		return false;
-	}
-	chk.each(function (i, o) {
-		item.push($(o).attr('item'));
-		num.push($(o).attr('num'));
-    });
-    $('#send-item').val(item);
-    $('#send-num').val(num);
-	var data = $('#order-sendout-form').serialize() ;
-	orderDelivery(orderId,data);
-}
