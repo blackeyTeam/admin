@@ -157,17 +157,12 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="paging" id="page-info">
-                                    <label class="paging-info">共 <span class="totalPages" v-text="totalPages"></span> 页/ 共 <span class="totalElements" v-text="totalElements"></span> 条数据, 每页显示
-                                        <select class="form-control input-sm" id="maxsize" v-model="pageSize">
-                                            <option v-for="option in pageSizeOptions" v-bind:value="option.value" v-text="option.text"></option>
-                                        </select> 条</label>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-white" @click="prePage"><i class="fa fa-chevron-left"></i></button>
-                                        <button class="btn btn-white" v-for="arr in showItemArray" v-text="arr.text" @click="selectShowItem(arr.value)"></button>
-                                        <button type="button" class="btn btn-white" @click="nextPage"><i class="fa fa-chevron-right"></i> </button>
-                                    </div>
-                                </div>
+
+                                    <pagination
+                                    :page-index="currentPage" 
+                                    :totla="count" 
+                                    :page-size="pageSize" 
+                                    @change-PageIndex="pageChange"></pagination>
                             </div>
                         </div>
                     </div>
@@ -481,6 +476,7 @@
     <script src="../assets/js/plugins/iCheck/icheck.min.js"></script>
     <script src="../assets/js-common/application.js"></script>
     <script src="../assets/js-common/paging.js"></script>
+    <script src="../component/pagination.js"></script>    
     <script src="js-data/order-list.js"></script>
     <script src="js-action/order-list.js"></script>
 </body>
