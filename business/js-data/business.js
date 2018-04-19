@@ -1,11 +1,11 @@
 var adminData = {
 	pagelist:function(data,callback){
-		 $.getJSON("/server/business/blackey/page",data,function(json){
+		 $.getJSON("/server/business/page",data,function(json){
             callback(json);
         });
 	} ,
 	save:function(data,callback){
-		$.post("/server/business/blackey/save",data,function(json){
+		$.post("/server/business/save",data,function(json){
 			callback(json);
 		});
 	},

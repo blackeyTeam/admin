@@ -30,7 +30,8 @@ var header_l = '<div class="sidebar-collapse">'+
                     '<li>'+
                         '<a><i class="fa fa-users"></i> <span class="nav-label">商户管理</span> <span class="fa arrow"></span></a>'+
                         '<ul class="nav nav-second-level collapse">'+
-                            '<li class="vendor-list"><a href="../vendor/vendor.html">商户列表</a></li>'+
+                            '<li class="business-list"><a href="../business/business.html">商户列表</a></li>'+
+                            '<li class="vendor-list"><a href="../vendor/vendor.html">活动列表</a></li>'+
                             // '<li class="vendor-auth"><a href="../vendor/vendor-auth.html">商户审核</a></li>'+
                             // '<li class="vendor-type"><a href="../vendor/vendor-type.html">商户类型</a></li>'+
                         '</ul>'+
@@ -45,13 +46,13 @@ var header_l = '<div class="sidebar-collapse">'+
                     //         '<li class="goods-price"><a href="../goods/goods-price.html">商品定价</a></li>'+
                     //     '</ul>'+
                     // '</li>'+
-                    '<li>'+
-                        '<a><i class="fa fa-home"></i> <span class="nav-label">店铺管理</span> <span class="fa arrow"></span></a>'+
-                        '<ul class="nav nav-second-level collapse">'+
-                            '<li class="shops-classify"><a href="../shops/shops-classify.html">店铺分类</a></li>'+
-                            '<li class="shops-list"><a href="../shops/shops-list.html">店铺列表</a></li>'+
-                        '</ul>'+
-                    '</li>'+
+                    // '<li>'+
+                    //     '<a><i class="fa fa-home"></i> <span class="nav-label">店铺管理</span> <span class="fa arrow"></span></a>'+
+                    //     '<ul class="nav nav-second-level collapse">'+
+                    //         '<li class="shops-classify"><a href="../shops/shops-classify.html">店铺分类</a></li>'+
+                    //         '<li class="shops-list"><a href="../shops/shops-list.html">店铺列表</a></li>'+
+                    //     '</ul>'+
+                    // '</li>'+
                     // '<li>'+
                     //     '<a><i class="fa fa-thumbs-up"></i> <span class="nav-label">推荐管理</span> <span class="fa arrow"></span></a>'+
                     //     '<ul class="nav nav-second-level collapse">'+

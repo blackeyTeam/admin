@@ -30,26 +30,43 @@ function loadAdminList(page) {
 }
 
 function showAddModal(){
-	$("#admin-id").val("");
-	$("#admin-name").val("");
-	$('#modal-admin-add').modal('show');
+	$("#business-id").val("");
+	// $("#admin-name").val("");
+	$('#modal-business-add').modal('show');
 }
 
 function showEditModal() {
+	//修改从后台调用
+
 	$("#admin-id").val("");
 	$("#admin-name").val("");
-	$('#modal-admin-edit').modal('show');
-	var id=	$(this).attr("id");
-	$("#admin-edit-id").val(id);
-	var name=$(this).attr("name");
-	$("#admin-edit-name").val(name);
+	$('#modal-business-add').modal('show');
+	var id=	$(this).parents("tr").children("td").eq(0).text();
+    var name=	$(this).parents("tr").children("td").eq(1).text();
+    var mainPage=	$(this).parents("tr").children("td").eq(5).text();
+    var discount=	$(this).parents("tr").children("td").eq(6).text();
+    var saleCode=	$(this).parents("tr").children("td").eq(7).text();
+    var address=	$(this).parents("tr").children("td").eq(8).text();
+    var mobile=	$(this).parents("tr").children("td").eq(2).text();
+    var telephone=	$(this).parents("tr").children("td").eq(3).text();
+    var remark=	$(this).parents("tr").children("td").eq(4).text();
+
+    $("#business-id").val(id);
+	$("#business-name").val(name);
+    $("#business-name").val(address);
+    $("#business-name").val(mobile);
+    $("#business-name").val(telephone);
+    $("#business-mainPage").val(mainPage);
+    $("#business-discount").val(discount);
+    $("#business-saleCode").val(saleCode);
+    $("#business-remark").val(remark);
 }
 
 $('#btn-business-save').click(function() {
 	var formData= new FormData($('#business-info')[0]);
 
 	$.ajax({
-		url: "/server/business/blackey/save",
+		url: "/server/business/save",
 		type: 'POST',
 		data: formData,
 		cache: false,

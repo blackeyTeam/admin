@@ -25,15 +25,15 @@
             </nav>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>系统管理</h2>
+                    <h2>商户管理</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="../assets/index.html">系统</a>
+                            <a href="../assets/index.html">商户</a>
                         </li>
                         <li>
-                            <a>权限管理</a>
+                            <a>商户管理</a>
                         </li>
-                        <li class="active"> <strong>管理员管理</strong>
+                        <li class="active"> <strong>商户管理</strong>
                         </li>
                     </ol>
                 </div>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>管理员列表</h5>
+                                <h5>商户列表</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link"> <i class="fa fa-chevron-up"></i>
                                     </a>
@@ -70,7 +70,10 @@
                                     <thead>
                                         <tr>
                                             <th>名称</th>
-                                            <th>头像</th>
+                                            <th>地址</th>
+                                            <th>电话</th>
+                                            <th>手机</th>
+                                            <th>主图</th>
                                             <th>折扣率</th>
                                             <th>消费码</th>
                                             <th>备注</th>
@@ -199,7 +202,7 @@
         </div>
     </div>
 </div>
-<div id="modal-admin-add" class="modal fade" aria-hidden="true">
+<div id="modal-business-add" class="modal fade" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -208,7 +211,7 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
                     <i class="fa fa-fw fa-group"></i>
-                    添加管理员
+                    添加商户
                 </h4>
             </div>
             <div class="modal-body">
@@ -218,14 +221,49 @@
                             <div class="form-group">
                                 <dl class="dl-horizontal fullscreen-dl ">
                                     <dt>
+                                    <label>
+                                        商户名
+                                        <code>*</code>
+                                    </label>
+                                </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" class="form-control" name="name" id="business-name">
+                                            <input type="hidden" class="form-control" name="id" id="business-id">
+                                        </div>
+                                    </dd>
+                                    <dt>
                                         <label>
-                                            商户名
+                                            地址
                                             <code>*</code>
                                         </label>
                                     </dt>
                                     <dd>
                                         <div class="display-inline input-md">
-                                            <input type="text" class="form-control" name="name" ></div>
+                                            <input type="text" class="form-control" name="address" id="business-address">
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        <label>
+                                            电话
+                                            <code>*</code>
+                                        </label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" class="form-control" name="mobile" id="business-mobile">
+                                        </div>
+                                    </dd>
+                                    <dt>
+                                        <label>
+                                            手机
+                                            <code>*</code>
+                                        </label>
+                                    </dt>
+                                    <dd>
+                                        <div class="display-inline input-md">
+                                            <input type="text" class="form-control" name="telephone" id="business-telephone">
+                                        </div>
                                     </dd>
                                     <dt>
                                         <label>
@@ -235,7 +273,7 @@
                                     </dt>
                                     <dd>
                                         <div class="display-inline input-md">
-                                            <input type="text" class="form-control" name="discount" ></div>
+                                            <input type="text" class="form-control" name="discount" id="business-discount"></div>
                                     </dd>
                                     <dt>
                                         <label>
@@ -245,7 +283,7 @@
                                     </dt>
                                     <dd>
                                         <div class="display-inline input-md">
-                                            <input type="text" class="form-control" name="saleCode" ></div>
+                                            <input type="text" class="form-control" name="saleCode" id="business-saleCode"></div>
                                     </dd>
                                     <dt>
                                         <label>
@@ -255,7 +293,7 @@
                                     </dt>
                                     <dd>
                                         <div class="display-inline input-md">
-                                            <input type="text" class="form-control" name="remark" ></div>
+                                            <input type="text" class="form-control" name="remark" id="business-remark"></div>
                                     </dd>
                                     <dt>
                                         <label>店家展示图</label>
@@ -283,62 +321,6 @@
         </div>
     </div>
 </div>
-<div id="modal-admin-edit" class="modal fade" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    <i class="fa fa-fw fa-group"></i>
-                    编辑管理员
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form id="edit-admin-info">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <dl class="dl-horizontal fullscreen-dl ">
-                                    <dt>
-                                        <label>
-                                            姓名
-                                            <code>*</code>
-                                        </label>
-                                    </dt>
-                                    <dd>
-                                        <div class="display-inline input-md">
-                                            <input type="text" class="form-control" name="name" id="admin-edit-name">
-                                            <input type="hidden" class="form-control" name="id" id="admin-edit-id"></div>
-                                    </dd>
-                                    <dt>
-                                        <label>头像</label>
-                                    </dt>
-                                    <dd id="pic-file">
-                                        <input type="file" value="浏览" name="file" id="up_img" />
-                                    </dd>
-                                    <dt></dt>
-                                    <dd>
-                                        <span class="error"></span>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-sm btn-primary pull-right m-t-n-xs btn-admin-save" >
-                    <strong>保存</strong>
-                </button>
-                <button class="btn btn-sm btn-default pull-right m-t-n-xs mr10" data-dismiss="modal">
-                    <strong>取消</strong>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 <div id="modal-admin-account" class="modal fade sm-modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -357,8 +339,6 @@
                         <div class="form-group">
                             <form id="save-account-form">
                                 <dl class="dl-horizontal fullscreen-dl ">
-                                    <input type="hidden" name="accountId" id="admin-accountId">
-                                    <input type="hidden" name="id" id="admin-id">
                                     <dt>
                                         <label>管理员名称:</label>
                                     </dt>

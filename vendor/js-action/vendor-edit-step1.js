@@ -7,7 +7,7 @@ var activity = new Vue({
         name:null,
         salePrice:null,
         discountPrice:null,
-        rushPrice:null,
+        lowPrice:null,
         stock:null,
         saleOut:null,
         attention:null,
@@ -32,7 +32,7 @@ var activity = new Vue({
             formData.append('name',self.name);
             formData.append('salePrice',self.salePrice);
             formData.append('discountPrice',self.discountPrice);
-            formData.append('rushPrice',self.rushPrice);
+            formData.append('lowPrice',self.lowPrice);
             formData.append('stock',self.stock);
             formData.append('saleOut',self.saleOut);
             formData.append('attention',self.attention);   
@@ -55,7 +55,7 @@ var activity = new Vue({
                 self.name = json.data.name;
                 self.salePrice = json.data.salePrice;
                 self.discountPrice = json.data.discountPrice;
-                self.rushPrice = json.data.rushPrice;
+                self.lowPrice = json.data.lowPrice;
                 self.stock = json.data.stock;
                 self.saleOut = json.data.saleOut;
                 self.attention = json.data.attention;
