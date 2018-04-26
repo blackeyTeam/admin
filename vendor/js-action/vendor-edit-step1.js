@@ -5,6 +5,7 @@ var activity = new Vue({
     data:{
         id:null,
         name:null,
+        intro:null,
         salePrice:null,
         discountPrice:null,
         lowPrice:null,
@@ -28,7 +29,8 @@ var activity = new Vue({
             var formData = new FormData();
             if($('.ggimgfile').length!=0)
             formData.append('file', $('.ggimgfile').get(0).files[0]); 
-            formData.append('id',self.id);            
+            formData.append('id',self.id);
+            formData.append('intro',self.intro);
             formData.append('name',self.name);
             formData.append('salePrice',self.salePrice);
             formData.append('discountPrice',self.discountPrice);
@@ -53,6 +55,7 @@ var activity = new Vue({
             ajax.detail(id,function(json){
                 self.id = json.data.id;
                 self.name = json.data.name;
+                self.intro = json.data.intro;
                 self.salePrice = json.data.salePrice;
                 self.discountPrice = json.data.discountPrice;
                 self.lowPrice = json.data.lowPrice;

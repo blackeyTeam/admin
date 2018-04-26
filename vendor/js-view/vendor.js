@@ -8,6 +8,7 @@ var vendorView = {
 			'{@each content as it,k}',
 				'<tr class="gradeX">',
                     '<td>${it.name}</td>',
+                    '<td>${it.intro}</td>',
                     '<td>${it.salePrice}</td>',
                     '<td>${it.discountPrice}</td>',
                     '<td>${it.lowPrice}</td>',
