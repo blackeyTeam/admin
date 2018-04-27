@@ -15,7 +15,6 @@ var vendorView = {
                     '<td>${it.stock}</td>',
                     '<td class="center">${it.saleOut}</td>',
                     '<td>${it.attention}</td>',
-                    '<td>${it.detail}</td>',
                     '<td class="center">',
                         '<a href="vendor-edit-step1.html?id=${it.id}" class="btn btn-success btn-circle" title="编辑"><i class="fa fa-edit"></i></a>',
                         '<a data-toggle="modal" href="#modal-vendor-del" id="${it.id}" class="btn btn-warning btn-circle modal-vendor-del" title="删除"><i class="fa fa-trash"></i></a>',
