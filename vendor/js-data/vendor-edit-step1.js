@@ -16,7 +16,7 @@ var ajax = {
         });
     },
     detail:function (id, callback){
-        $.getJSON("/server/activity/detail",{id:id},function(json){
+        $.getJSON("/server/activity/admin/detail",{id:id},function(json){
             callback(json)
         })
     }
